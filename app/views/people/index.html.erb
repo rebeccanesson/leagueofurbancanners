@@ -1,0 +1,39 @@
+<h1>Listing people</h1>
+
+<p><%= link_to 'New Person', new_person_path, :class => 'btn btn-primary' %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th></th>
+    <% end %>
+    <% if user_signed_in? && current_user.admin? %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @people.each do |person| %>
+  <tr>
+    <td><%= person.first_name %></td>
+    <td><%= person.last_name %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= person.phone %></td>
+      <td><%= person.email %></td>
+      <td><%= person.user.role if person.user %></td>
+      <td><%= link_to 'Show', person, :class => 'btn btn-mini'%></td>
+    <% end %>
+    <% if user_signed_in? && current_user.admin? %>
+      <td><%= link_to 'Edit', edit_person_path(person), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

@@ -14,6 +14,9 @@ end
 
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'cancan'
+gem 'omniauth'
+gem 'gmaps4rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

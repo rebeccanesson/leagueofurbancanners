@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  harvest_id: 1
+  leader_id: 1
+  date: 2012-11-15 13:36:40
+  amount_canned: 1
+  pints_canned: 1
+  notes: MyText
+
+two:
+  harvest_id: 1
+  leader_id: 1
+  date: 2012-11-15 13:36:40
+  amount_canned: 1
+  pints_canned: 1
+  notes: MyText

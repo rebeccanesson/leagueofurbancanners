@@ -1,0 +1,53 @@
+<%= form_for(@harvest) do |f| %>
+  <% if @harvest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@harvest.errors.count, "error") %> prohibited this harvest from being saved:</h2>
+
+      <ul>
+      <% @harvest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :tentative_date %><br />
+    <%= f.text_field :tentative_date %>
+  </div>
+  <div class="field">
+    <%= f.label :harvesters_needed %><br />
+    <%= f.number_field :harvesters_needed %>
+  </div>
+  <div class="field">
+    <%= f.label :canners_needed %><br />
+    <%= f.number_field :canners_needed %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :fruit_tree_id %><br />
+    <%= f.number_field :fruit_tree_id %>
+  </div>
+  <div class="field">
+    <%= f.label :leader_id %><br />
+    <%= f.number_field :leader_id %>
+  </div>
+  <div class="field">
+    <%= f.label :amount_harvested %><br />
+    <%= f.number_field :amount_harvested %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

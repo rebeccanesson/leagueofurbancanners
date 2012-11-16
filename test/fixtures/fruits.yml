@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  season_start: 2012-11-15 13:10:10
+  season_end: 2012-11-15 13:10:10
+
+two:
+  name: MyString
+  season_start: 2012-11-15 13:10:10
+  season_end: 2012-11-15 13:10:10

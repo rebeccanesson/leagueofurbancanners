@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  description: MyText
+  tentative_date: MyString
+  harvesters_needed: 1
+  canners_needed: 1
+  date: 2012-11-15 13:19:38
+  fruit_tree_id: 1
+  leader_id: 1
+  amount_harvested: 1
+  notes: MyText
+
+two:
+  description: MyText
+  tentative_date: MyString
+  harvesters_needed: 1
+  canners_needed: 1
+  date: 2012-11-15 13:19:38
+  fruit_tree_id: 1
+  leader_id: 1
+  amount_harvested: 1
+  notes: MyText

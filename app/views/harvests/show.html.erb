@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @harvest.description %>
+</p>
+
+<p>
+  <b>Tentative date:</b>
+  <%= @harvest.tentative_date %>
+</p>
+
+<p>
+  <b>Harvesters needed:</b>
+  <%= @harvest.harvesters_needed %>
+</p>
+
+<p>
+  <b>Canners needed:</b>
+  <%= @harvest.canners_needed %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @harvest.date %>
+</p>
+
+<p>
+  <b>Fruit tree:</b>
+  <%= @harvest.fruit_tree_id %>
+</p>
+
+<p>
+  <b>Leader:</b>
+  <%= @harvest.leader_id %>
+</p>
+
+<p>
+  <b>Amount harvested:</b>
+  <%= @harvest.amount_harvested %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @harvest.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_harvest_path(@harvest) %> |
+<%= link_to 'Back', harvests_path %>

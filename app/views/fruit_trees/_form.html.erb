@@ -1,0 +1,33 @@
+<%= form_for(@fruit_tree) do |f| %>
+  <% if @fruit_tree.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fruit_tree.errors.count, "error") %> prohibited this fruit_tree from being saved:</h2>
+
+      <ul>
+      <% @fruit_tree.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :site_id %><br />
+    <%= f.number_field :site_id %>
+  </div>
+  <div class="field">
+    <%= f.label :fruit_id %><br />
+    <%= f.number_field :fruit_id %>
+  </div>
+  <div class="field">
+    <%= f.label :season_start %><br />
+    <%= f.datetime_select :season_start %>
+  </div>
+  <div class="field">
+    <%= f.label :season_end %><br />
+    <%= f.datetime_select :season_end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

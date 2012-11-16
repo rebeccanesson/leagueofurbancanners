@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Fruit tree:</b>
+  <%= @status_check.fruit_tree_id %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @status_check.date %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @status_check.status %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @status_check.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_status_check_path(@status_check) %> |
+<%= link_to 'Back', status_checks_path %>

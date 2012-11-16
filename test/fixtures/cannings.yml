@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  canning_session_id: 1
+  canner_id: 1
+  hours_integer: MyString
+
+two:
+  canning_session_id: 1
+  canner_id: 1
+  hours_integer: MyString

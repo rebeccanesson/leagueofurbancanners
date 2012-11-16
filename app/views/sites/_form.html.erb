@@ -1,0 +1,146 @@
+<%= form_for(setup_site(@site)) do |f| %>
+  <% if @site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% @site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" style="float:left;">
+    <%= f.label :street %><br />
+    <%= f.text_field :street %>
+  </div>
+  <div class="field" style="float:left;">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field" style="float:left;">
+    <%= f.label :zipcode %><br />
+    <%= f.text_field :zipcode %>
+  </div>
+  <div style="clear:both;">
+  <div class="field">
+    <%= f.label :owner_id %>
+      <div style="float:left;margin-right:10px">
+    <%= f.collection_select(:owner_id, Person.all, :id, :full_name, {:include_blank => 'Choose or Create Owner'}, {:class => 'owner_id_class'}) %>  OR 
+    </div>
+    <div style="float:left;">
+    <%= f.fields_for :owner, Person.new do |ff| %>
+      <div>
+        <%= ff.label :first_name %>
+        <%= ff.text_field :first_name, { :disabled => @site.owner_id?, :class => 'owner_class' } %>
+      </div>
+      <div>
+        <%= ff.label :last_name %>
+        <%= ff.text_field :last_name, { :disabled => @site.owner_id?, :class => 'owner_class' } %>
+      </div>
+      <div>
+        <%= ff.label :email %>
+        <%= ff.text_field :email, { :disabled => @site.owner_id?, :class => 'owner_class' } %>
+      </div>
+      <div>
+        <%= ff.label :phone %>
+        <%= ff.text_field :phone, { :disabled => @site.owner_id?, :class => 'owner_class' } %>
+      </div>
+    <% end %>
+    </div>
+    <div style="clear:both;" />
+  </div>
+  <div class="field">
+    <%= f.label :secondary_owner_id %>
+    <div style="float:left;margin-right:10px">
+    <%= f.collection_select(:secondary_owner_id, Person.all, :id, :full_name, {:include_blank => 'Choose or Create Secondary Owner'}, {:class => 'secondary_owner_id_class'}) %> OR
+    </div>
+    <div style="float:left;">
+    <%= f.fields_for :secondary_owner, Person.new do |ff| %>
+      <div>
+        <%= ff.label :first_name %>
+        <%= ff.text_field :first_name, { :disabled => @site.secondary_owner_id?, :class => 'secondary_owner_class' } %>
+      </div>
+      <div>
+        <%= ff.label :last_name %>
+        <%= ff.text_field :last_name, { :disabled => @site.secondary_owner_id?, :class => 'secondary_owner_class' }  %>
+      </div>
+      <div>
+        <%= ff.label :email %>
+        <%= ff.text_field :email, { :disabled => @site.secondary_owner_id?, :class => 'secondary_owner_class' }  %>
+      </div>
+      <div>
+        <%= ff.label :phone %>
+        <%= ff.text_field :phone, { :disabled => @site.secondary_owner_id?, :class => 'secondary_owner_class' }  %>
+      </div>
+    <% end %>
+    </div>
+    <div style="clear:both;" />
+  </div>
+  <div class="field">
+    <%= f.label :lurc_contact_id %>
+    <div style="float:left;margin-right:10px">
+    <%= f.collection_select(:lurc_contact_id, Person.all, :id, :full_name, {:include_blank => 'Choose or Create LUrC Contact'}, {:class => 'lurc_contact_id_class'}) %> OR 
+    </div>
+    <div style="float:left;">
+    <%= f.fields_for :lurc_contact, Person.new do |ff| %>
+      <div>
+        <%= ff.label :first_name %>
+        <%= ff.text_field :first_name, { :disabled => @site.lurc_contact_id?, :class => 'lurc_contact_class' } %>
+      </div>
+      <div>
+        <%= ff.label :last_name %>
+        <%= ff.text_field :last_name, { :disabled => @site.lurc_contact_id?, :class => 'lurc_contact_class' } %>
+      </div>
+      <div>
+        <%= ff.label :email %>
+        <%= ff.text_field :email, { :disabled => @site.lurc_contact_id?, :class => 'lurc_contact_class' } %>
+      </div>
+      <div>
+        <%= ff.label :phone %>
+        <%= ff.text_field :phone, { :disabled => @site.lurc_contact_id?, :class => 'lurc_contact_class' } %>
+      </div>
+    <% end %>
+    </div>
+    <div style="clear:both;"/>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.select :status, Site.STATUSES %>
+  </div>
+  <div class="field">
+    <%= f.label :fruit_trees %><br />
+    <% @site.fruit_trees.each do |fruit_tree| %>
+      <%= f.fields_for :fruit_trees, fruit_tree do |ff| %>
+        <div class="field">
+          <%= ff.label :fruit_id %><br />
+           <%= ff.collection_select(:fruit_id, Fruit.all, :id, :name, :include_blank => 'Choose a Fruit') %>
+        </div>
+        <div class="field">
+          <%= ff.label 'Season Start' %>
+          <%= ff.select(:season_start_month, MONTHS, :include_blank => true ) %>  
+          <%= ff.select(:season_start_day, (1..31).to_a, :include_blank => true ) %>
+          <% if !fruit_tree.fruit.nil? %>
+            Default fruit start date is <%= fruit_tree.fruit.season_start_month %> <%= fruit_tree.fruit.season_start_day %>
+          <% end %>
+        </div>
+        <div class="field">
+          <%= ff.label 'Season End' %>
+          <%= ff.select(:season_end_month, MONTHS, :include_blank => true ) %>
+          <%= ff.select(:season_end_day, (1..31).to_a, :include_blank => true ) %>
+          <% if !fruit_tree.fruit.nil? %>
+            Default fruit end date is <%= fruit_tree.fruit.season_end_month %> <%= fruit_tree.fruit.season_end_day %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

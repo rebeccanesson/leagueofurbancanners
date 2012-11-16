@@ -1,0 +1,31 @@
+<h1>Listing status_checks</h1>
+
+<p><%= link_to 'New Status check', new_status_check_path, :class => 'btn btn-primary' %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Fruit tree</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @status_checks.each do |status_check| %>
+  <tr>
+    <td><%= status_check.fruit_tree_id %></td>
+    <td><%= status_check.date %></td>
+    <td><%= status_check.status %></td>
+    <td><%= status_check.notes %></td>
+    <td><%= link_to 'Show', status_check, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_status_check_path(status_check), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', status_check, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

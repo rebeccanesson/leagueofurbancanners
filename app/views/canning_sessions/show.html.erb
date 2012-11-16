@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Harvest:</b>
+  <%= @canning_session.harvest_id %>
+</p>
+
+<p>
+  <b>Leader:</b>
+  <%= @canning_session.leader_id %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @canning_session.date %>
+</p>
+
+<p>
+  <b>Amount canned:</b>
+  <%= @canning_session.amount_canned %>
+</p>
+
+<p>
+  <b>Pints canned:</b>
+  <%= @canning_session.pints_canned %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @canning_session.notes %>
+</p>
+
+
+<%= link_to 'Edit', edit_canning_session_path(@canning_session) %> |
+<%= link_to 'Back', canning_sessions_path %>

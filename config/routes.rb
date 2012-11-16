@@ -1,5 +1,34 @@
 Lurc::Application.routes.draw do
+  resources :cannings
+
+
+  resources :canning_sessions
+
+
+  resources :harvestings
+
+
+  resources :harvests
+
+
+  resources :status_checks
+
+
+  resources :fruit_trees
+
+
+  resources :fruits
+
+
+  resources :sites
+
+
+  resources :people
+
+
   devise_for :users
+  
+  resources :users, :only => [:edit, :update]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

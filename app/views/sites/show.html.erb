@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Street:</b>
+  <%= @site.street %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @site.city %>
+</p>
+
+<p>
+  <b>Zipcode:</b>
+  <%= @site.zipcode %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @site.lat %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @site.lon %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @site.owner_id? ? @site.owner.full_name : nil %>
+</p>
+
+<p>
+  <b>Secondary owner:</b>
+  <%= @site.secondary_owner_id? ? @site.secondary_owner.full_name : nil %>
+</p>
+
+<p>
+  <b>Lurc contact:</b>
+  <%= @site.lurc_contact_id? ? @site.lurc_contact.full_name : nil %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @site.note %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @site.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>

@@ -1,0 +1,29 @@
+<h1>Listing fruits</h1>
+
+<p><%= link_to 'New Fruit', new_fruit_path, :class => 'btn btn-primary' %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Season start</th>
+    <th>Season end</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fruits.each do |fruit| %>
+  <tr>
+    <td><%= fruit.name %></td>
+    <td><%= fruit.season_start_month %> <%= fruit.season_start_day %></td>
+    <td><%= fruit.season_end_month %> <%= fruit.season_end_day %></td>
+    <td><%= link_to 'Show', fruit, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_fruit_path(fruit), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', fruit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

@@ -1,0 +1,29 @@
+<h1>Listing harvestings</h1>
+
+<p><%= link_to 'New Harvesting', new_harvesting_path, :class => 'btn btn-primary' %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Harvest</th>
+    <th>Person</th>
+    <th>Hours</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @harvestings.each do |harvesting| %>
+  <tr>
+    <td><%= harvesting.harvest_id %></td>
+    <td><%= harvesting.person_id %></td>
+    <td><%= harvesting.hours %></td>
+    <td><%= link_to 'Show', harvesting, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_harvesting_path(harvesting), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', harvesting, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

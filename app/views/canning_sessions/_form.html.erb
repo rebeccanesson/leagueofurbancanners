@@ -1,0 +1,41 @@
+<%= form_for(@canning_session) do |f| %>
+  <% if @canning_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@canning_session.errors.count, "error") %> prohibited this canning_session from being saved:</h2>
+
+      <ul>
+      <% @canning_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :harvest_id %><br />
+    <%= f.number_field :harvest_id %>
+  </div>
+  <div class="field">
+    <%= f.label :leader_id %><br />
+    <%= f.number_field :leader_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :amount_canned %><br />
+    <%= f.number_field :amount_canned %>
+  </div>
+  <div class="field">
+    <%= f.label :pints_canned %><br />
+    <%= f.number_field :pints_canned %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

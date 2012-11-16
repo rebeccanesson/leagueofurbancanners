@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Harvest:</b>
+  <%= @harvesting.harvest_id %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @harvesting.person_id %>
+</p>
+
+<p>
+  <b>Hours:</b>
+  <%= @harvesting.hours %>
+</p>
+
+
+<%= link_to 'Edit', edit_harvesting_path(@harvesting) %> |
+<%= link_to 'Back', harvestings_path %>

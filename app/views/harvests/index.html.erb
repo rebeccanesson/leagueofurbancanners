@@ -1,0 +1,41 @@
+<h1>Listing harvests</h1>
+
+<p><%= link_to 'New Harvest', new_harvest_path, :class => 'btn btn-primary' %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Description</th>
+    <th>Tentative date</th>
+    <th>Harvesters needed</th>
+    <th>Canners needed</th>
+    <th>Date</th>
+    <th>Fruit tree</th>
+    <th>Leader</th>
+    <th>Amount harvested</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @harvests.each do |harvest| %>
+  <tr>
+    <td><%= harvest.description %></td>
+    <td><%= harvest.tentative_date %></td>
+    <td><%= harvest.harvesters_needed %></td>
+    <td><%= harvest.canners_needed %></td>
+    <td><%= harvest.date %></td>
+    <td><%= harvest.fruit_tree_id %></td>
+    <td><%= harvest.leader_id %></td>
+    <td><%= harvest.amount_harvested %></td>
+    <td><%= harvest.notes %></td>
+    <td><%= link_to 'Show', harvest, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_harvest_path(harvest), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', harvest, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
