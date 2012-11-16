@@ -22,4 +22,12 @@ class Harvest < ActiveRecord::Base
     where("date < ?", Time.now)
   end
   
+  def upcoming? 
+      date >= Time.now
+  end
+  
+  def past?
+      date < Time.now
+  end
+  
 end

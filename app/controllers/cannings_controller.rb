@@ -25,6 +25,7 @@ class CanningsController < ApplicationController
   # GET /cannings/new.json
   def new
     @canning = Canning.new
+    @canning.canning_session_id = params[:canning_session_id]
 
     respond_to do |format|
       format.html # new.html.erb

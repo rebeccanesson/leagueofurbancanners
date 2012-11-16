@@ -4,6 +4,7 @@ class CanningSession < ActiveRecord::Base
   belongs_to :harvest
   has_one :fruit_tree, :through => :harvest
   belongs_to :leader, :class_name => "Person"
+  has_many :cannings
   
   def session_name
     harvest.harvest_name + " #{id}"

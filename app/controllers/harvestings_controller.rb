@@ -24,7 +24,9 @@ class HarvestingsController < ApplicationController
   # GET /harvestings/new
   # GET /harvestings/new.json
   def new
-    @harvesting = Harvesting.new
+    @harvesting = Harvesting.new 
+    @harvesting.harvest_id = params[:harvest_id]
+    @harvesting.harvester_id = params[:harvester_id]
 
     respond_to do |format|
       format.html # new.html.erb

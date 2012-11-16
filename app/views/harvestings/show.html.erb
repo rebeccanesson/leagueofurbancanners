@@ -1,13 +1,15 @@
+<h1>Harvesting</h1>
+  
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Harvest:</b>
-  <%= @harvesting.harvest_id %>
+  <%= @harvesting.harvest.harvest_name %>
 </p>
 
 <p>
   <b>Person:</b>
-  <%= @harvesting.person_id %>
+  <%= @harvesting.harvester.full_name %>
 </p>
 
 <p>

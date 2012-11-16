@@ -1,20 +1,19 @@
+<h1>Canning Work Log</h1>
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Canning session:</b>
-  <%= @canning.canning_session_id %>
+  <%= @canning.canning_session.session_name %>
 </p>
 
 <p>
   <b>Canner:</b>
-  <%= @canning.canner_id %>
+  <%= @canning.canner.full_name %>
 </p>
 
 <p>
   <b>Hours integer:</b>
-  <%= @canning.hours_integer %>
+  <%= @canning.hours %>
 </p>
 
 
-<%= link_to 'Edit', edit_canning_path(@canning) %> |
-<%= link_to 'Back', cannings_path %>

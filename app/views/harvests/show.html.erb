@@ -41,9 +41,42 @@
   <%= @harvest.notes %>
 </p>
 
-<h2>Canning Sessions</h2>
+<p>
+  <% if user_signed_in? && current_user.organizer? %>
+    <%= link_to 'New Canning Session', new_canning_session_path(:harvest_id => @harvest.id), :class => 'btn btn-primary' %> 
+    <%= link_to 'Log Harvester Work', new_harvesting_path(:harvest_id => @harvest.id), :class => 'btn btn-primary' %>
+  <% end %>
+  <% if @harvest.upcoming? %>
+    <%= link_to 'Join the Harvest', '#', :class => 'btn btn-primary' %>
+  <% end %>
+</p>
 
-<p><%= link_to 'New Canning Session', new_canning_session_path, :class => 'btn btn-primary' %></p>
+<h2>Harvester Logs</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Harvester</th>
+    <th>Hours</th>
+    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @harvest.harvestings.each do |harvesting| %>
+  <tr>
+    <td><%= harvesting.harvester.full_name %></td>
+    <td><%= harvesting.hours %></td>
+    <td><%= link_to 'Show', harvesting, :class => 'btn btn-mini' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_harvesting_path(harvesting), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', harvesting, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<h2>Canning Sessions</h2>
 
 <table class="table table-striped">
   <tr>

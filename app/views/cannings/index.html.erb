@@ -1,25 +1,29 @@
-<h1>Listing cannings</h1>
+<h1>Listing Cannings</h1>
 
-<p><%= link_to 'New Canning', new_canning_path, :class => 'btn btn-primary' %></p>
+<p><%= link_to 'Log Canning Work', new_canning_path, :class => 'btn btn-primary' %></p>
 
 <table class="table table-striped">
   <tr>
     <th>Canning session</th>
     <th>Canner</th>
-    <th>Hours integer</th>
+    <th>Hours</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @cannings.each do |canning| %>
   <tr>
-    <td><%= canning.canning_session_id %></td>
-    <td><%= canning.canner_id %></td>
-    <td><%= canning.hours_integer %></td>
+    <td><%= canning.canning_session.name %></td>
+    <td><%= canning.canner.full_name %></td>
+    <td><%= canning.hours %></td>
     <td><%= link_to 'Show', canning, :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Edit', edit_canning_path(canning), :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Destroy', canning, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_canning_path(canning), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', canning, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
