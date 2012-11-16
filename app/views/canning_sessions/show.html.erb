@@ -1,18 +1,20 @@
+<h1><%= @canning_session.session_name %></h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Harvest:</b>
-  <%= @canning_session.harvest_id %>
+  <%= link_to @canning_session.harvest.harvest_name, @canning_session.harvest %>
 </p>
 
 <p>
   <b>Leader:</b>
-  <%= @canning_session.leader_id %>
+  <%= link_to @canning_session.leader.full_name, @canning_session.leader %>
 </p>
 
 <p>
   <b>Date:</b>
-  <%= @canning_session.date %>
+  <%= @canning_session.date.to_s :human %>
 </p>
 
 <p>
@@ -29,7 +31,3 @@
   <b>Notes:</b>
   <%= @canning_session.notes %>
 </p>
-
-
-<%= link_to 'Edit', edit_canning_session_path(@canning_session) %> |
-<%= link_to 'Back', canning_sessions_path %>

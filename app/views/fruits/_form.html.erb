@@ -1,4 +1,4 @@
-<%= form_for(@fruit) do |f| %>
+<%= form_for(@fruit, :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @fruit.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@fruit.errors.count, "error") %> prohibited this fruit from being saved:</h2>
@@ -11,27 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls"><%= f.text_field :name %></div>
   </div>
-  <div class="field">
-    <%= f.label :season_start_month %><br />
-    <%= f.select :season_start_month, MONTHS %>
+  <div class="control-group">
+    <%= f.label 'Season Start', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :season_start_month, MONTHS %>
+      <%= f.select :season_start_day, (1..31).to_a %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :season_start_day %><br />
-    <%= f.select :season_start_day, (1..31).to_a %>
+  <div class="control-group">
+    <%= f.label 'Season End', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :season_end_month, MONTHS %>
+      <%= f.select :season_end_day, (1..31).to_a %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :season_end_month %><br />
-    <%= f.select :season_end_month, MONTHS %>
-  </div>
-  <div class="field">
-    <%= f.label :season_end_day %><br />
-    <%= f.select :season_end_day, (1..31).to_a %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="controls">
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

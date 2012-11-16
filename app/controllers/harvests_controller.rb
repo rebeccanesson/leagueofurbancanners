@@ -3,6 +3,8 @@ class HarvestsController < ApplicationController
   # GET /harvests.json
   def index
     @harvests = Harvest.all
+    @upcoming_harvests = Harvest.upcoming
+    @past_harvests = Harvest.past
 
     respond_to do |format|
       format.html # index.html.erb

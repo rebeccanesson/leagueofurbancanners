@@ -1,3 +1,5 @@
+<h1><%= @site.street %></h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -16,28 +18,18 @@
 </p>
 
 <p>
-  <b>Latitude:</b>
-  <%= @site.lat %>
-</p>
-
-<p>
-  <b>Longitude:</b>
-  <%= @site.lon %>
-</p>
-
-<p>
   <b>Owner:</b>
-  <%= @site.owner_id? ? @site.owner.full_name : nil %>
+  <%= @site.owner_id? ? (link_to @site.owner.full_name, @site.owner) : nil %>
 </p>
 
 <p>
   <b>Secondary owner:</b>
-  <%= @site.secondary_owner_id? ? @site.secondary_owner.full_name : nil %>
+  <%= @site.secondary_owner_id? ? (link_to @site.secondary_owner.full_name, @site.secondary_owner) : nil %>
 </p>
 
 <p>
   <b>Lurc contact:</b>
-  <%= @site.lurc_contact_id? ? @site.lurc_contact.full_name : nil %>
+  <%= @site.lurc_contact_id? ? (link_to @site.lurc_contact.full_name, @site.lurc_contact) : nil %>
 </p>
 
 <p>
@@ -50,6 +42,28 @@
   <%= @site.status %>
 </p>
 
+<h2>Fruit Trees</h2>
 
-<%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
+<p><%= link_to 'New Fruit tree', new_fruit_tree_path, :class => 'btn btn-primary' %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Fruit</th>
+    <th>Season start</th>
+    <th>Season end</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @site.fruit_trees.each do |fruit_tree| %>
+  <tr>
+    <td><%= fruit_tree.fruit.name %></td>
+    <td><%= fruit_tree.start_month %> <%= fruit_tree.start_day %></td>
+    <td><%= fruit_tree.end_month %> <%= fruit_tree.end_day %></td>
+    <td><%= link_to 'Show', fruit_tree, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_fruit_tree_path(fruit_tree), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', fruit_tree, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>

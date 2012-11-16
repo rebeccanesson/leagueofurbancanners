@@ -1,4 +1,4 @@
-<%= form_for(@harvest) do |f| %>
+<%= form_for(@harvest, :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @harvest.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@harvest.errors.count, "error") %> prohibited this harvest from being saved:</h2>
@@ -11,43 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls"><%= f.text_area :description %></div>
   </div>
-  <div class="field">
-    <%= f.label :tentative_date %><br />
-    <%= f.text_field :tentative_date %>
+  <div class="control-group">
+    <%= f.label :harvesters_needed, :class => 'control-label' %>
+    <div class="controls"><%= f.number_field :harvesters_needed %></div>
   </div>
-  <div class="field">
-    <%= f.label :harvesters_needed %><br />
-    <%= f.number_field :harvesters_needed %>
+  <div class="control-group">
+    <%= f.label :canners_needed, :class => 'control-label' %>
+    <div class="controls"><%= f.number_field :canners_needed %></div>
   </div>
-  <div class="field">
-    <%= f.label :canners_needed %><br />
-    <%= f.number_field :canners_needed %>
+  <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls"><%= f.datetime_select :date, :discard_minute => true, :ampm => true %></div>
   </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
+  <div class="control-group">
+    <%= f.label :fruit_tree_id, :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select :fruit_tree_id, FruitTree.all, :id, :tree_name %></div>
   </div>
-  <div class="field">
-    <%= f.label :fruit_tree_id %><br />
-    <%= f.number_field :fruit_tree_id %>
+  <div class="control-group">
+    <%= f.label :leader_id, :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select :leader_id, Person.all, :id, :full_name %></div>
   </div>
-  <div class="field">
-    <%= f.label :leader_id %><br />
-    <%= f.number_field :leader_id %>
+  <div class="control-group">
+    <%= f.label :amount_harvested, :class => 'control-label' %>
+    <div class="controls"><%= f.number_field :amount_harvested %></div>
   </div>
-  <div class="field">
-    <%= f.label :amount_harvested %><br />
-    <%= f.number_field :amount_harvested %>
+  <div class="control-group">
+    <%= f.label :notes, :class => 'control-label' %>
+    <div class="controls"><%= f.text_area :notes %></div>
   </div>
-  <div class="field">
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="controls">
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

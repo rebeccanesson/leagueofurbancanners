@@ -1,6 +1,6 @@
-<h1>Listing canning_sessions</h1>
+<h1>Listing Canning Sessions</h1>
 
-<p><%= link_to 'New Canning session', new_canning_session_path, :class => 'btn btn-primary' %></p>
+<p><%= link_to 'New Canning Session', new_canning_session_path, :class => 'btn btn-primary' %></p>
 
 <table class="table table-striped">
   <tr>
@@ -9,23 +9,25 @@
     <th>Date</th>
     <th>Amount canned</th>
     <th>Pints canned</th>
-    <th>Notes</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @canning_sessions.each do |canning_session| %>
   <tr>
-    <td><%= canning_session.harvest_id %></td>
-    <td><%= canning_session.leader_id %></td>
-    <td><%= canning_session.date %></td>
+    <td><%= canning_session.harvest.harvest_name %></td>
+    <td><%= canning_session.leader.full_name %></td>
+    <td><%= canning_session.date.to_s :human %></td>
     <td><%= canning_session.amount_canned %></td>
     <td><%= canning_session.pints_canned %></td>
-    <td><%= canning_session.notes %></td>
     <td><%= link_to 'Show', canning_session, :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Edit', edit_canning_session_path(canning_session), :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Destroy', canning_session, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_canning_session_path(canning_session), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', canning_session, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

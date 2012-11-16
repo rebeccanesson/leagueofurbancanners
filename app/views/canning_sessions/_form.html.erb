@@ -1,4 +1,4 @@
-<%= form_for(@canning_session) do |f| %>
+<%= form_for(@canning_session, :class => {:html => 'form-horizontal'}) do |f| %>
   <% if @canning_session.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@canning_session.errors.count, "error") %> prohibited this canning_session from being saved:</h2>
@@ -11,31 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :harvest_id %><br />
-    <%= f.number_field :harvest_id %>
+  <div class="control-group">
+    <%= f.label :harvest_id, :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select :harvest_id, Harvest.all, :id, :harvest_name %></div>
   </div>
-  <div class="field">
-    <%= f.label :leader_id %><br />
-    <%= f.number_field :leader_id %>
+  <div class="control-group">
+    <%= f.label :leader_id, :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select :leader_id, Person.all, :id, :full_name %></div>
   </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
+  <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls"><%= f.datetime_select :date, :discard_minute => true, :ampm => true %></div>
   </div>
-  <div class="field">
-    <%= f.label :amount_canned %><br />
-    <%= f.number_field :amount_canned %>
+  <div class="control-group">
+    <%= f.label :amount_canned, :class => 'control-label' %>
+    <div class="controls"><%= f.number_field :amount_canned %></div>
   </div>
-  <div class="field">
-    <%= f.label :pints_canned %><br />
-    <%= f.number_field :pints_canned %>
+  <div class="control-group">
+    <%= f.label :pints_canned, :class => 'control-label' %>
+    <div class="controls"><%= f.number_field :pints_canned %></div>
   </div>
-  <div class="field">
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
+  <div class="control-group">
+    <%= f.label :notes, :class => 'control-label' %>
+    <div class="controls"><%= f.text_area :notes %></div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="controls">
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

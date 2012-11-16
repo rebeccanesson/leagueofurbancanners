@@ -1,50 +1,58 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(setup_user(resource), :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(setup_user(resource), :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls"><%= f.email_field :email %></div>
+  </div>
   
-  <% if current_user && current_user.admin? %>
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
-  <% end %>
+  <div class="control-group">
+    <% if current_user && current_user.admin? %>
+      <%= f.label :role, :class => 'control-label' %>
+      <div class="controls"><%= f.collection_select :role, User::ROLES, :to_s, :humanize %></div>
+    <% end %>
+  </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+  <div class="control-group">
+    <%= f.label :password, :class => 'control-label' %> 
+    <div class="controls"><%= f.password_field :password, :autocomplete => "off" %> 
+      <span class="inline-help">(leave blank if you don't want to change it)</span></div>
+  </div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, :class => 'control-label' %>
+    <div class="controls"><%= f.password_field :password_confirmation %></div>
+  </div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+  <div class="control-group">
+    <%= f.label :current_password, :class => 'control-label' %> 
+    <div class="controls"><%= f.password_field :current_password %>
+      <span class="inline-help">(we need your current password to confirm your changes)</span></div>
+  </div>
   
   
   <%= f.fields_for :person do |ff| %>
-    <div>
-      <%= ff.label :first_name %>
-      <%= ff.text_field :first_name %>
+    <div class="control-group">
+      <%= ff.label :first_name, :class => 'control-label' %>
+      <div class="controls"><%= ff.text_field :first_name %></div>
     </div>
-    <div>
-      <%= ff.label :last_name %>
-      <%= ff.text_field :last_name %>
+    <div class="control-group">
+      <%= ff.label :last_name, :class => 'control-label' %>
+      <div class="controls"><%= ff.text_field :last_name %></div>
     </div>
-    <div>
-      <%= ff.label :email %>
-      <%= ff.text_field :email %>
+    <div class="control-group">
+      <%= ff.label :email, :class => 'control-label' %>
+      <div class="controls"><%= ff.text_field :email %></div>
     </div>
-    <div>
-      <%= ff.label :phone %>
-      <%= ff.text_field :phone %>
+    <div class="control-group">
+      <%= ff.label :phone, :class => 'control-label' %>
+      <div class="controls"><%= ff.text_field :phone %></div>
     </div>
   <% end %>
 
 
-  <div><%= f.submit "Update" %></div>
+  <div class="controls"><%= f.submit "Update", :class => 'btn btn-primary' %> <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger' %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>

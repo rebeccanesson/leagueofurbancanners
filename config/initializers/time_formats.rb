@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:human] = '%m/%d/%y @ %l%p'

@@ -1,4 +1,4 @@
-<%= form_for(@status_check) do |f| %>
+<%= form_for(@status_check, :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @status_check.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@status_check.errors.count, "error") %> prohibited this status_check from being saved:</h2>
@@ -11,23 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :fruit_tree_id %><br />
-    <%= f.number_field :fruit_tree_id %>
+  <div class="control-group">
+    <%= f.label :fruit_tree_id %>
+    <div class="controls"><%= f.collection_select :fruit_tree_id, FruitTree.all, :id, :tree_name %></div>
   </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
+  <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls"><%= f.datetime_select :date, :discard_minute => true, :ampm => true %></div>
   </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls"><%= f.select :status, StatusCheck::STATUSES %></div>
   </div>
-  <div class="field">
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
+  <div class="control-group">
+    <%= f.label :notes, :class => 'control-label' %>
+    <div class="controls"><%= f.text_area :notes %></div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="controls">
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

@@ -8,8 +8,10 @@
     <th>Season start</th>
     <th>Season end</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @fruits.each do |fruit| %>
@@ -18,8 +20,10 @@
     <td><%= fruit.season_start_month %> <%= fruit.season_start_day %></td>
     <td><%= fruit.season_end_month %> <%= fruit.season_end_day %></td>
     <td><%= link_to 'Show', fruit, :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Edit', edit_fruit_path(fruit), :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Destroy', fruit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_fruit_path(fruit), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', fruit, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

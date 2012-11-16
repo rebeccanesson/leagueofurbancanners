@@ -1,13 +1,15 @@
+<h1><%= @status_check.check_name %></h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Fruit tree:</b>
-  <%= @status_check.fruit_tree_id %>
+  <%= link_to @status_check.fruit_tree.tree_name, @status_check.fruit_tree %>
 </p>
 
 <p>
   <b>Date:</b>
-  <%= @status_check.date %>
+  <%= @status_check.date.to_s :human %>
 </p>
 
 <p>
@@ -20,6 +22,3 @@
   <%= @status_check.notes %>
 </p>
 
-
-<%= link_to 'Edit', edit_status_check_path(@status_check) %> |
-<%= link_to 'Back', status_checks_path %>

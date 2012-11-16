@@ -1,13 +1,9 @@
+<h1><%= @harvest.harvest_name %></h1>
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Description:</b>
   <%= @harvest.description %>
-</p>
-
-<p>
-  <b>Tentative date:</b>
-  <%= @harvest.tentative_date %>
 </p>
 
 <p>
@@ -22,17 +18,17 @@
 
 <p>
   <b>Date:</b>
-  <%= @harvest.date %>
+  <%= @harvest.date.to_s :human %>
 </p>
 
 <p>
   <b>Fruit tree:</b>
-  <%= @harvest.fruit_tree_id %>
+  <%= link_to @harvest.fruit_tree.tree_name, @harvest.fruit_tree %>
 </p>
 
 <p>
   <b>Leader:</b>
-  <%= @harvest.leader_id %>
+  <%= link_to @harvest.leader.full_name, @harvest.leader %>
 </p>
 
 <p>
@@ -45,6 +41,36 @@
   <%= @harvest.notes %>
 </p>
 
+<h2>Canning Sessions</h2>
 
-<%= link_to 'Edit', edit_harvest_path(@harvest) %> |
-<%= link_to 'Back', harvests_path %>
+<p><%= link_to 'New Canning Session', new_canning_session_path, :class => 'btn btn-primary' %></p>
+
+<table class="table table-striped">
+  <tr>
+    <th>Leader</th>
+    <th>Date</th>
+    <th>Amount canned</th>
+    <th>Pints canned</th>
+    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @harvest.canning_sessions.each do |canning_session| %>
+  <tr>
+    <td><%= canning_session.leader.full_name %></td>
+    <td><%= canning_session.date.to_s :human %></td>
+    <td><%= canning_session.amount_canned %></td>
+    <td><%= canning_session.pints_canned %></td>
+    <td><%= link_to 'Show', canning_session, :class => 'btn btn-mini' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_canning_session_path(canning_session), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', canning_session, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115210722) do
+ActiveRecord::Schema.define(:version => 20121116173102) do
 
   create_table "canning_sessions", :force => true do |t|
     t.integer  "harvest_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20121115210722) do
 
   create_table "harvests", :force => true do |t|
     t.text     "description"
-    t.string   "tentative_date"
+    t.datetime "tentative_date",    :limit => 255
     t.integer  "harvesters_needed"
     t.integer  "canners_needed"
     t.datetime "date"
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(:version => 20121115210722) do
     t.integer  "leader_id"
     t.integer  "amount_harvested"
     t.text     "notes"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "people", :force => true do |t|

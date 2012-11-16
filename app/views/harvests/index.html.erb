@@ -1,41 +1,78 @@
-<h1>Listing harvests</h1>
+<h1>Harvests</h1>
 
 <p><%= link_to 'New Harvest', new_harvest_path, :class => 'btn btn-primary' %></p>
 
+<h2>Upcoming Harvests</h2>
+
 <table class="table table-striped">
   <tr>
+    <th>Fruit tree</th>
+    <th>Date</th>
+    <th>Leader</th>
     <th>Description</th>
-    <th>Tentative date</th>
     <th>Harvesters needed</th>
     <th>Canners needed</th>
-    <th>Date</th>
-    <th>Fruit tree</th>
-    <th>Leader</th>
     <th>Amount harvested</th>
-    <th>Notes</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
-<% @harvests.each do |harvest| %>
+<% @upcoming_harvests.each do |harvest| %>
   <tr>
+    <td><%= harvest.fruit_tree.tree_name %></td>
+    <td><%= harvest.date.to_s :human %></td>
+    <td><%= harvest.leader.full_name %></td>
     <td><%= harvest.description %></td>
-    <td><%= harvest.tentative_date %></td>
     <td><%= harvest.harvesters_needed %></td>
     <td><%= harvest.canners_needed %></td>
-    <td><%= harvest.date %></td>
-    <td><%= harvest.fruit_tree_id %></td>
-    <td><%= harvest.leader_id %></td>
     <td><%= harvest.amount_harvested %></td>
-    <td><%= harvest.notes %></td>
     <td><%= link_to 'Show', harvest, :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Edit', edit_harvest_path(harvest), :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Destroy', harvest, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_harvest_path(harvest), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', harvest, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
-<br />
+<h2>Past Harvests</h2>
+
+<table class="table table-striped">
+  <tr>
+    <th>Fruit tree</th>
+    <th>Date</th>
+    <th>Leader</th>
+    <th>Description</th>
+    <th>Harvesters needed</th>
+    <th>Canners needed</th>
+    <th>Amount harvested</th>
+    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @past_harvests.each do |harvest| %>
+  <tr>
+    <td><%= harvest.fruit_tree.tree_name %></td>
+    <td><%= harvest.date.to_s :human %></td>
+    <td><%= harvest.leader.full_name %></td>
+    <td><%= harvest.description %></td>
+    <td><%= harvest.harvesters_needed %></td>
+    <td><%= harvest.canners_needed %></td>
+    <td><%= harvest.amount_harvested %></td>
+    <td><%= link_to 'Show', harvest, :class => 'btn btn-mini' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_harvest_path(harvest), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', harvest, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
 
 

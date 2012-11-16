@@ -1,4 +1,4 @@
-<%= form_for(@fruit_tree) do |f| %>
+<%= form_for(@fruit_tree, :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @fruit_tree.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@fruit_tree.errors.count, "error") %> prohibited this fruit_tree from being saved:</h2>
@@ -11,23 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :site_id %><br />
-    <%= f.number_field :site_id %>
+  <div class="control-group">
+    <%= f.label :site_id, :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select :site_id, Site.all, :id, :street %>
+      <%= link_to 'Add a new site', new_site_path, :class => 'btn'%></div>
   </div>
-  <div class="field">
-    <%= f.label :fruit_id %><br />
-    <%= f.number_field :fruit_id %>
+  <div class="control-group">
+    <%= f.label :fruit_id, :class => 'control-label' %>
+     <div class="controls"><%= f.collection_select(:fruit_id, Fruit.all, :id, :name) %></div>
   </div>
-  <div class="field">
-    <%= f.label :season_start %><br />
-    <%= f.datetime_select :season_start %>
+  <div class="control-group">
+    <%= f.label 'Season Start', :class => 'control-label' %>
+    <div class="controls"><%= f.select(:season_start_month, MONTHS, :include_blank => true ) %>  
+    <%= f.select(:season_start_day, (1..31).to_a, :include_blank => true ) %>
+    <% if !@fruit_tree.fruit.nil? %>
+      <span class="inline-help">Default fruit start date is <%= @fruit_tree.fruit.season_start_month %> <%= @fruit_tree.fruit.season_start_day %></span>
+    <% end %></div>
   </div>
-  <div class="field">
-    <%= f.label :season_end %><br />
-    <%= f.datetime_select :season_end %>
+  <div class="control-group">
+    <%= f.label 'Season End', :class => 'control-label' %>
+    <div class="controls"><%= f.select(:season_end_month, MONTHS, :include_blank => true ) %>
+    <%= f.select(:season_end_day, (1..31).to_a, :include_blank => true ) %>
+    <% if !@fruit_tree.fruit.nil? %>
+      <span class="inline-help">Default fruit end date is <%= @fruit_tree.fruit.season_end_month %> <%= @fruit_tree.fruit.season_end_day %></span>
+    <% end %></div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="controls">
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

@@ -1,15 +1,8 @@
+<h1><%= @person.full_name %></h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>First name:</b>
-  <%= @person.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @person.last_name %>
-</p>
-
+<% if user_signed_in? && current_user.organizer? %>
 <p>
   <b>Phone:</b>
   <%= @person.phone %>
@@ -20,11 +13,5 @@
   <%= @person.email %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @person.user_id %>
-</p>
+<% end %>
 
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>

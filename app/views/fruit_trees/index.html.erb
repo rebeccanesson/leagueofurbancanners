@@ -1,5 +1,4 @@
-<h1>Listing fruit_trees</h1>
-
+<h1>Listing Fruit Trees</h1>
 
 <p><%= link_to 'New Fruit tree', new_fruit_tree_path, :class => 'btn btn-primary' %></p>
 
@@ -10,19 +9,23 @@
     <th>Season start</th>
     <th>Season end</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @fruit_trees.each do |fruit_tree| %>
   <tr>
-    <td><%= fruit_tree.site_id %></td>
-    <td><%= fruit_tree.fruit_id %></td>
-    <td><%= fruit_tree.season_start_month %> <%= fruit_tree.season_start_day%></td>
-    <td><%= fruit_tree.season_end_month %> <%= fruit_tree.season_end_day %></td>
+    <td><%= fruit_tree.site.street %></td>
+    <td><%= fruit_tree.fruit.name %></td>
+    <td><%= fruit_tree.start_month %> <%= fruit_tree.start_day %></td>
+    <td><%= fruit_tree.end_month %> <%= fruit_tree.end_day %></td>
     <td><%= link_to 'Show', fruit_tree, :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Edit', edit_fruit_tree_path(fruit_tree), :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Destroy', fruit_tree, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_fruit_tree_path(fruit_tree), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Destroy', fruit_tree, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
