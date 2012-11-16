@@ -37,9 +37,9 @@
     <td><%= site.secondary_owner_id? ? site.secondary_owner.full_name : nil %></td>
     <td><%= site.lurc_contact_id? ? site.lurc_contact.full_name : nil %></td>
     <td><%= site.status %></td>
-    <td><%= link_to 'Show', site, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Learn More', site, :class => 'btn btn-mini' %></td>
     <td><%= link_to 'Edit', edit_site_path(site), :class => 'btn btn-mini' %></td>
-    <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <td><%= link_to 'Delete', site, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>
 </table>

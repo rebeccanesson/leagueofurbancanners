@@ -67,10 +67,10 @@
   <tr>
     <td><%= harvesting.harvester.full_name %></td>
     <td><%= harvesting.hours %></td>
-    <td><%= link_to 'Show', harvesting, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Learn More', harvesting, :class => 'btn btn-mini' %></td>
     <% if user_signed_in? && current_user.organizer? %>
       <td><%= link_to 'Edit', edit_harvesting_path(harvesting), :class => 'btn btn-mini' %></td>
-      <td><%= link_to 'Destroy', harvesting, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+      <td><%= link_to 'Delete', harvesting, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
     <% end %>
   </tr>
 <% end %>

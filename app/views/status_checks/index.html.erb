@@ -21,10 +21,10 @@
     <td><%= status_check.date.to_s :human %></td>
     <td><%= status_check.status %></td>
     <td><%= status_check.notes %></td>
-    <td><%= link_to 'Show', status_check, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Learn More', status_check, :class => 'btn btn-mini' %></td>
     <% if user_signed_in? && current_user.organizer? %>
       <td><%= link_to 'Edit', edit_status_check_path(status_check), :class => 'btn btn-mini' %></td>
-      <td><%= link_to 'Destroy', status_check, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+      <td><%= link_to 'Delete', status_check, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
     <% end %>
   </tr>
 <% end %>
