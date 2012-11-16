@@ -1,4 +1,5 @@
 class HarvestingsController < ApplicationController
+    load_and_authorize_resource
   # GET /harvestings
   # GET /harvestings.json
   def index

@@ -1,4 +1,5 @@
 class FruitTreesController < ApplicationController
+    load_and_authorize_resource
   # GET /fruit_trees
   # GET /fruit_trees.json
   def index

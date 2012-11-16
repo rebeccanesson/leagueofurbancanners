@@ -1,4 +1,5 @@
 class CanningSessionsController < ApplicationController
+    load_and_authorize_resource
   # GET /canning_sessions
   # GET /canning_sessions.json
   def index

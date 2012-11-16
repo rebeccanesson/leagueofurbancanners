@@ -1,4 +1,5 @@
 class CanningsController < ApplicationController
+    load_and_authorize_resource
   # GET /cannings
   # GET /cannings.json
   def index

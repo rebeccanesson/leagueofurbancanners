@@ -1,4 +1,5 @@
 class StatusChecksController < ApplicationController
+    load_and_authorize_resource
   # GET /status_checks
   # GET /status_checks.json
   def index
