@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   ROLES = %w[member organizer admin]
   
   def default_role
-    role ||= 'member'
+    self.role = "member" unless role
   end
   
   def admin?

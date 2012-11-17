@@ -6,13 +6,13 @@ class FruitTree < ActiveRecord::Base
   has_many :harvests
   belongs_to :fruit
   
-  validates :season_start_month, :inclusion => { :in => MONTHS }, :allow_nil => true
-  validates :season_end_month,  :inclusion => { :in => MONTHS }, :allow_nil => true
-  validates :season_start_day, :inclusion => { :in => (1..31).to_a }, :allow_nil => true
-  validates :season_end_day,  :inclusion => { :in => (1..31).to_a }, :allow_nil => true
+  # validates :season_start_month, :inclusion => { :in => MONTHS }, :allow_nil => true
+  # validates :season_end_month,  :inclusion => { :in => MONTHS }, :allow_nil => true
+  # validates :season_start_day, :inclusion => { :in => (1..31).to_a }, :allow_nil => true
+  # validates :season_end_day,  :inclusion => { :in => (1..31).to_a }, :allow_nil => true
   
-  def tree_name
-      site.street + " " + fruit.name 
+  def tree_name(current_user)
+      site.site_name + " " + fruit.name 
   end
   
   def start_month

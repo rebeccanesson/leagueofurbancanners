@@ -12,6 +12,38 @@
   <b>Email:</b>
   <%= @person.email %>
 </p>
-
 <% end %>
+
+<h2>Sites</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Street</th>
+    <th>City</th>
+    <th>Zipcode</th>
+    <th>Role</th>
+    <th>Status</th>
+    <th></th>
+    <% if user_signed_in? && current_user.admin? %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @person.all_sites.each do |site| %>
+  <tr>
+    <td><%= site.site_name %></td>
+    <td><%= site.city %></td>
+    <td><%= site.zipcode %></td>
+    <td><%= @person.site_role(site) %></td>
+    <td><%= site.status %></td>
+    <td><%= link_to 'Learn More', site, :class => 'btn btn-mini' %></td>
+    <% if user_signed_in? && current_user.admin? %>
+      <td><%= link_to 'Edit', edit_site_path(site), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Delete', site, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+
 

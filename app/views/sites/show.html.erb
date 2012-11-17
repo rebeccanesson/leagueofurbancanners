@@ -1,11 +1,13 @@
-<h1><%= @site.street %></h1>
+<h1><%= @site.site_name %></h1>
 
 <p id="notice"><%= notice %></p>
 
+<% if user_signed_in? && @site.sees_street(current_user) %>
 <p>
   <b>Street:</b>
   <%= @site.street %>
 </p>
+<% end %>
 
 <p>
   <b>City:</b>

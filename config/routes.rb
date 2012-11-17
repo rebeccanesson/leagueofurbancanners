@@ -23,7 +23,12 @@ Lurc::Application.routes.draw do
   resources :sites
 
 
-  resources :people
+  resources :people do 
+    member do 
+        get 'merge'
+        post 'commit_merge'
+    end  
+  end
 
 
   devise_for :users

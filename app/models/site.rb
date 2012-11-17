@@ -21,13 +21,17 @@ class Site < ActiveRecord::Base
   accepts_nested_attributes_for :lurc_contact, :reject_if => proc { |attributes| attributes['last_name'].blank? }
   attr_accessible :owner_attributes, :secondary_owner_attributes, :lurc_contact_attributes
   
-  accepts_nested_attributes_for :fruit_trees
+  accepts_nested_attributes_for :fruit_trees, :reject_if => proc { |attributes| attributes['fruit_id'].blank? }
   attr_accessible :fruit_trees_attributes
   
   
   @@STATUSES = ['Not Contacted', 'Owner Contacted - No Response', 'Contacted - No Permission', 'Open Harvest', 'Harvest with Owner Coordination']
   def self.STATUSES 
      @@STATUSES
+  end
+  
+  def site_name
+    street.tr('0-9','') + " #{id}"
   end
   
   validates :status, :inclusion => { :in => @@STATUSES }, :presence => true
@@ -45,7 +49,11 @@ class Site < ActiveRecord::Base
   end
   
   def gmaps4rails_sidebar
-    "<li>#{street}</li>" #put whatever you want here
+    "<li>#{site_name}</li>" #put whatever you want here
+  end
+  
+  def sees_street(user)
+      user.admin? || user.person == lurc_contact || user.person == owner || user.person == secondary_owner
   end
   
 end

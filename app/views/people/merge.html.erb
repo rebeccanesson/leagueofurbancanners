@@ -1,0 +1,24 @@
+<h1>Merge <%= @person.full_name %> with another person</h1>
+
+<%= form_tag(:controller => "people", :action => "commit_merge", :method => "post", :class => "form-horizontal") do |f| %>
+<% if @person.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+    <ul>
+    <% @person.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+  
+  <div class="control-group">
+    <%= label_tag 'Select Person to Merge With', nil, :class => 'control-label' %>
+    <div class="controls"><%= select_tag "other_person_id", options_from_collection_for_select(Person.all, "id", "full_name") %></div>
+  </div>
+  
+  <div class="controls">
+    <%= submit_tag 'Merge', :class => 'btn btn-primary'%>
+  </div>
+<% end %>

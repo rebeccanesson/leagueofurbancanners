@@ -120,7 +120,7 @@
         </div>
         <div class="control-group">
           <%= ff.label 'Season Start', :class => 'control-label' %>
-          <div class="controls"><%= ff.select(:season_start_month, MONTHS, :include_blank => true ) %>  
+          <div class="controls"><%= ff.select(:season_start_month, MONTHS, :include_blank => true) %>  
           <%= ff.select(:season_start_day, (1..31).to_a, :include_blank => true ) %>
           <% if !fruit_tree.fruit.nil? %>
             <span class="inline-help">Default fruit start date is <%= fruit_tree.fruit.season_start_month %> <%= fruit_tree.fruit.season_start_day %></span>

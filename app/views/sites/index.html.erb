@@ -30,7 +30,7 @@
 
 <% @sites.each do |site| %>
   <tr>
-    <td><%= site.street %></td>
+    <td><%= site.site_name %></td>
     <td><%= site.city %></td>
     <td><%= site.zipcode %></td>
     <td><%= site.owner_id? ? site.owner.full_name : nil %></td>

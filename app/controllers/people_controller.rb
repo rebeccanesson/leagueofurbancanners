@@ -37,6 +37,10 @@ class PeopleController < ApplicationController
   def edit
     @person = Person.find(params[:id])
   end
+  
+  def merge
+      @person = Person.find(params[:id])
+  end
 
   # POST /people
   # POST /people.json
@@ -68,6 +72,18 @@ class PeopleController < ApplicationController
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def commit_merge
+      @person = Person.find(params[:id])
+      @other_person = Person.find(params[:other_person_id])
+      if @person.merge_in(@other_person)
+        format.html { redirect_to @person, notice: 'Person was succesfully merged.'}
+        format.json { head :no_content }
+      else 
+        format.html { render action: "merge"}
+        format.json { render json: @person.errors, status: :unprocessable_entity}
+      end
   end
 
   # DELETE /people/1
