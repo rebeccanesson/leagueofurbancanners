@@ -25,7 +25,7 @@ class Person < ActiveRecord::Base
   end
   
   def all_sites
-    owned_sites + secondary_owned_sites + contact_sites
+    (owned_sites + secondary_owned_sites + contact_sites).uniq
   end
      
   def site_role(site)

@@ -78,7 +78,7 @@ class PeopleController < ApplicationController
       @person = Person.find(params[:id])
       @other_person = Person.find(params[:other_person_id])
       if @person.merge_in(@other_person)
-        format.html { redirect_to @person, notice: 'Person was succesfully merged.'}
+        format.html { redirect_to @person, notice: 'Person was succesfully merged.' }
         format.json { head :no_content }
       else 
         format.html { render action: "merge"}

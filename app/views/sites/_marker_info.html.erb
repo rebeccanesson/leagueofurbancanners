@@ -1,1 +1,2 @@
-<%= link_to site.site_name, site %>
+<%= link_to site.site_name, site %><br />
+<%= site.fruits.uniq.collect { |f| f.name }.join(", ") %>
