@@ -11,7 +11,7 @@ class FruitTree < ActiveRecord::Base
   # validates :season_start_day, :inclusion => { :in => (1..31).to_a }, :allow_nil => true
   # validates :season_end_day,  :inclusion => { :in => (1..31).to_a }, :allow_nil => true
   
-  def tree_name(current_user)
+  def tree_name
       site.site_name + " " + fruit.name 
   end
   
