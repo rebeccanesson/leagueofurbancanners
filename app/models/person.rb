@@ -8,6 +8,7 @@ class Person < ActiveRecord::Base
   has_many :contact_sites, :class_name => 'Site', :foreign_key => 'lurc_contact_id'
   
   validates_presence_of :last_name
+  before_save :copy_email_from_user
   
   def full_name
     first_name + "  " + last_name
@@ -34,6 +35,10 @@ class Person < ActiveRecord::Base
     res << "secondary owner" if site.secondary_owner == self
     res << "LUrC contact" if site.lurc_contact == self
     res.join(", ")
+  end
+  
+  def copy_email_from_user
+    self.email = self.user.email if self.email == nil && self.user_id?
   end
   
 end
