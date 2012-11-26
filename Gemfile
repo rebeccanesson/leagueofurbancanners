@@ -17,6 +17,8 @@ gem 'devise'
 gem 'cancan'
 gem 'omniauth'
 gem 'gmaps4rails'
+gem 'will_paginate'
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.

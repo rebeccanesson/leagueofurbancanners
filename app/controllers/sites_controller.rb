@@ -1,9 +1,16 @@
 class SitesController < ApplicationController
+    helper_method :sort_column, :sort_direction
     load_and_authorize_resource
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.all
+    @fruit_ids = params[:fruit_ids].collect { |i| i.to_i }
+    if (@fruit_ids)
+        puts @fruit_ids.to_s
+        @sites = Site.has_fruit_in(@fruit_ids).order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
+    else 
+        @sites = Site.order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
+    end
     @map_json = @sites.to_gmaps4rails do |site, marker|
         marker.infowindow render_to_string(:partial => "marker_info", :locals => { :site => site })
         marker.json({ :id => site.id, :link => site_url(site) })
@@ -84,5 +91,14 @@ class SitesController < ApplicationController
       format.html { redirect_to sites_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  def sort_column
+    Site.column_names.include?(params[:sort]) ? "sites." + params[:sort] : "sites.status"
+  end
+  
+  def sort_direction
+     %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

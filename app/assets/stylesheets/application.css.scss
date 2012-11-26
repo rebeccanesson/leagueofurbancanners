@@ -11,3 +11,16 @@
  *= require_self
  *= require_tree .
  */
+ 
+ th .current {
+   padding-right: 18px;
+   background-repeat: no-repeat;
+   background-position: right center;
+ }
+ th .asc { 
+   background-image: image-url("uparrow.gif"); 
+ }
+
+ th .desc { 
+   background-image: image-url("downarrow.gif"); 
+ }

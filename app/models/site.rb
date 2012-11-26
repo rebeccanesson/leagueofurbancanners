@@ -14,6 +14,8 @@ class Site < ActiveRecord::Base
   has_many :status_checks, :through => :fruit_trees
   has_many :harvests, :through => :fruit_trees
   
+  scope :has_fruit_in, lambda { |fruit_ids| joins(:fruit_trees).where("fruit_trees.fruit_id in (?)", fruit_ids) }
+  
   # Bad practice to accept nested attributes for a parent, but forms are set up so that only new owners can/will be selected
   # this way and existing owners cannot be edited from within a user.  
   accepts_nested_attributes_for :owner, :reject_if => proc { |attributes| attributes['last_name'].blank? }
@@ -23,7 +25,6 @@ class Site < ActiveRecord::Base
   
   accepts_nested_attributes_for :fruit_trees, :reject_if => proc { |attributes| attributes['fruit_id'].blank? }
   attr_accessible :fruit_trees_attributes
-  
   
   @@STATUSES = ['Not Contacted', 'Owner Contacted - No Response', 'Contacted - No Permission', 'Open Harvest', 'Harvest with Owner Coordination']
   def self.STATUSES 

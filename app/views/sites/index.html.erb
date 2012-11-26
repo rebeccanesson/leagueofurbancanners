@@ -14,15 +14,38 @@
 </div>
 
 <div class="row">
+  <%= form_tag sites_path, :method => 'get' do %>
+    <ul>
+      <% for site_filter in ["In Season", "Needs Check", "Has Upcoming Harvest"] %>
+        <li>
+          <%= check_box_tag "site_filters[]", site_filter %>
+          <%= site_filter %>
+        </li>
+      <% end %>
+    </ul>
+    <ul>
+      <% for fruit in Fruit.all %>
+        <li>
+          <%= check_box_tag "fruit_ids[]", fruit.id, @fruit_ids.include?(fruit.id), :multiple => true  %>
+          <%= fruit.name %>
+        </li>
+      <% end %>
+    </ul>
+    <%= submit_tag "Filter", :name => nil %>
+  <% end %>
+</div>
+
+<div class="row">
 <table class="table table-striped">
   <tr>
     <th>Street</th>
-    <th>City</th>
-    <th>Zipcode</th>
+    <th><%= sortable 'city', "City" %></th>
+    <th><%= sortable 'zipcode', 'Zipcode' %></th>
     <th>Owner</th>
-    <th>Secondary owner</th>
+    <th>Secondary Owner</th>
     <th>LUrC contact</th>
-    <th>Status</th>
+    <th><%= sortable 'status', 'Status' %></th>
+    <th>Fruits</th>
     <th></th>
     <th></th>
     <th></th>
@@ -37,10 +60,13 @@
     <td><%= site.secondary_owner_id? ? site.secondary_owner.full_name : nil %></td>
     <td><%= site.lurc_contact_id? ? site.lurc_contact.full_name : nil %></td>
     <td><%= site.status %></td>
+    <td><%= site.fruit_trees.collect { |t| t.fruit.name }.uniq.join(",") %></td>
     <td><%= link_to 'Learn More', site, :class => 'btn btn-mini' %></td>
     <td><%= link_to 'Edit', edit_site_path(site), :class => 'btn btn-mini' %></td>
     <td><%= link_to 'Delete', site, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @sites %>
 </div>
