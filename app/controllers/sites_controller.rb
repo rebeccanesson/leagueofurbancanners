@@ -4,7 +4,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @fruit_ids = params[:fruit_ids].collect { |i| i.to_i }
+    @fruit_ids = params[:fruit_ids].collect { |i| i.to_i } if params[:fruit_ids]
     if (@fruit_ids)
         puts @fruit_ids.to_s
         @sites = Site.has_fruit_in(@fruit_ids).order(sort_column + ' ' + sort_direction).paginate(:per_page => 15, :page => params[:page])
