@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = Person.order(:last_name, :first_name)
 
     respond_to do |format|
       format.html # index.html.erb
