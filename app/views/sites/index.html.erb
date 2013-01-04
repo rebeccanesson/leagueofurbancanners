@@ -24,7 +24,7 @@
       <% end %>
     </ul>
     <ul>
-      <% for fruit in Fruit.all %>
+      <% for fruit in Fruit.order(:name) %>
         <li>
           <%= check_box_tag "fruit_ids[]", fruit.id, @fruit_ids && @fruit_ids.include?(fruit.id), :multiple => true  %>
           <%= fruit.name %>

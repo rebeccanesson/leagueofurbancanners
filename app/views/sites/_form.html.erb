@@ -26,7 +26,7 @@
     <div class="row">
   <div class="control-group span6">
     <%= f.label :owner_id, :class => 'control-label' %>
-    <div class="controls"><%= f.collection_select(:owner_id, Person.all, :id, :full_name, {:include_blank => 'Choose or Create Owner'}, {:class => 'owner_id_class'}) %></div>
+    <div class="controls"><%= f.collection_select(:owner_id, Person.order(:last_name, :first_name), :id, :full_name, {:include_blank => 'Choose or Create Owner'}, {:class => 'owner_id_class'}) %></div>
   </div>
   <div class="span6">
     <%= f.fields_for :owner, Person.new do |ff| %>
@@ -52,7 +52,7 @@
   <div class="row">
   <div class="control-group span6">
     <%= f.label :secondary_owner_id, :class => 'control-label' %>
-    <div class="controls"><%= f.collection_select(:secondary_owner_id, Person.all, :id, :full_name, {:include_blank => 'Choose or Create Secondary Owner'}, {:class => 'secondary_owner_id_class'}) %></div>
+    <div class="controls"><%= f.collection_select(:secondary_owner_id, Person.order(:last_name, :first_name), :id, :full_name, {:include_blank => 'Choose or Create Secondary Owner'}, {:class => 'secondary_owner_id_class'}) %></div>
   </div>
   <div class="span6">
     <%= f.fields_for :secondary_owner, Person.new do |ff| %>
@@ -78,7 +78,7 @@
     <div class="row">
   <div class="control-group span6">
     <%= f.label :lurc_contact_id, :class => 'control-label' %>
-    <div class="controls"><%= f.collection_select(:lurc_contact_id, Person.all, :id, :full_name, {:include_blank => 'Choose or Create LUrC Contact'}, {:class => 'lurc_contact_id_class'}) %></div>
+    <div class="controls"><%= f.collection_select(:lurc_contact_id, Person.order(:last_name, :first_name), :id, :full_name, {:include_blank => 'Choose or Create LUrC Contact'}, {:class => 'lurc_contact_id_class'}) %></div>
   </div>
       <div class="span6">
       <%= f.fields_for :lurc_contact, Person.new do |ff| %>
