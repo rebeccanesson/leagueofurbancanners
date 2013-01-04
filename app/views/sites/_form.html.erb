@@ -116,7 +116,7 @@
       <%= f.fields_for :fruit_trees, fruit_tree do |ff| %>
         <div class="control-group">
           <%= ff.label :fruit_id, :class => 'control-label' %>
-           <div class="controls"><%= ff.collection_select(:fruit_id, Fruit.all, :id, :name, :include_blank => 'Choose a Fruit') %></div>
+           <div class="controls"><%= ff.collection_select(:fruit_id, Fruit.order(:name), :id, :name, :include_blank => 'Choose a Fruit') %></div>
         </div>
         <div class="control-group">
           <%= ff.label 'Season Start', :class => 'control-label' %>
