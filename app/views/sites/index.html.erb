@@ -35,10 +35,12 @@
   <% end %>
 </div>
 
+<%= will_paginate @fruit_trees %>
+
 <div class="row">
 <table class="table table-striped">
   <tr>
-    <th>Street</th>
+    <th><%= sortable 'street', "Street" %></th>
     <th><%= sortable 'city', "City" %></th>
     <th><%= sortable 'zipcode', 'Zipcode' %></th>
     <th>Owner</th>
@@ -68,5 +70,5 @@
 <% end %>
 </table>
 
-<%= will_paginate @sites %>
+<%= will_paginate @fruit_trees %>
 </div>

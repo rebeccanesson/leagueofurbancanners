@@ -46,7 +46,7 @@
 
 <h2>Fruit Trees</h2>
 
-<p><%= link_to 'New Fruit tree', new_fruit_tree_path, :class => 'btn btn-primary' %></p>
+<p><%= link_to 'New Fruit tree', new_fruit_tree_path(:site_id => @site.id), :class => 'btn btn-primary' %></p>
 
 <table class="table table-striped">
   <tr>

@@ -1,9 +1,10 @@
 class FruitTreesController < ApplicationController
+    helper_method :sort_column, :sort_direction
     load_and_authorize_resource
   # GET /fruit_trees
   # GET /fruit_trees.json
   def index
-    @fruit_trees = FruitTree.all
+    @fruit_trees = FruitTree.order(sort_column + ' ' + sort_direction).paginate(:per_page => 25, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +27,7 @@ class FruitTreesController < ApplicationController
   # GET /fruit_trees/new.json
   def new
     @fruit_tree = FruitTree.new
+    @fruit_tree.site_id = params[:site_id] if params[:site_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -80,5 +82,14 @@ class FruitTreesController < ApplicationController
       format.html { redirect_to fruit_trees_url }
       format.json { head :no_content }
     end
+  end
+  
+  private
+  def sort_column
+    FruitTree.column_names.include?(params[:sort]) ? "fruit_trees." + params[:sort] : "fruit_trees.fruit_id"
+  end
+  
+  def sort_direction
+     %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

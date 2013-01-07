@@ -2,10 +2,12 @@
 
 <p><%= link_to 'New Fruit tree', new_fruit_tree_path, :class => 'btn btn-primary' %></p>
 
+<%= will_paginate @sites %>
+
 <table class="table table-striped">
   <tr>
     <th>Site</th>
-    <th>Fruit</th>
+    <th><%= sortable 'fruit_id', "Fruit" %></th>
     <th>Season start</th>
     <th>Season end</th>
     <th></th>
@@ -29,6 +31,8 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @sites %>
 
 <br />
 
