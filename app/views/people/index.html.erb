@@ -2,6 +2,8 @@
 
 <p><%= link_to 'New Person', new_person_path, :class => 'btn btn-primary' %></p>
 
+<%= will_paginate @people %>
+
 <table class="table table-striped">
   <tr>
     <th>First name</th>
@@ -41,5 +43,7 @@
   </tr>
 <% end %>
 </table>
+
+<%= will_paginate @people %>
 
 <br />
