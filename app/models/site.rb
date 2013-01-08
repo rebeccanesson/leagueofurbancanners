@@ -9,7 +9,7 @@ class Site < ActiveRecord::Base
   belongs_to :owner, :class_name => 'Person'
   belongs_to :secondary_owner, :class_name => 'Person'
   belongs_to :lurc_contact, :class_name => 'Person'
-  has_many :fruit_trees
+  has_many :fruit_trees, :dependent => :destroy
   has_many :fruits, :through => :fruit_trees
   has_many :status_checks, :through => :fruit_trees
   has_many :harvests, :through => :fruit_trees

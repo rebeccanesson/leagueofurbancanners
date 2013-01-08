@@ -4,9 +4,9 @@ class Harvest < ActiveRecord::Base
   belongs_to :fruit_tree
   has_one :site, :through => :fruit_tree
   belongs_to :leader, :class_name => "Person"
-  has_many :harvestings
+  has_many :harvestings, :dependent => :destroy
   has_many :harvesters, :through => :harvestings, :class_name => "Person"
-  has_many :canning_sessions
+  has_many :canning_sessions, :dependent => :destroy
   has_many :cannings, :through => :canning_sessions
   has_many :canners, :through => :cannings, :class_name => "Person"
   

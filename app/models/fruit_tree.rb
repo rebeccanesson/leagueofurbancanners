@@ -2,10 +2,10 @@ class FruitTree < ActiveRecord::Base
   attr_accessible :fruit_id, :season_start_month, :season_start_day, :season_end_month, :season_end_day, :site_id, :pruning_candidate, :pruning_permission
   
   belongs_to :site
-  has_many :status_checks, :order => "date DESC"
-  has_many :harvests
+  has_many :status_checks, :order => "date DESC", :dependent => :destroy
+  has_many :harvests, :dependent => :destroy
   belongs_to :fruit
-  has_many :prunings
+  has_many :prunings, :dependent => :destroy
   
   acts_as_gmappable :lng => :longitude, :lat => :latitude
   
