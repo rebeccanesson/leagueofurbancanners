@@ -18,12 +18,18 @@ class FruitTree < ActiveRecord::Base
       site.lon
   end
   
+  def longitude=(lon)
+  end
+  
   def latitude
       site.lat
   end
   
+  def latitude=(lat)
+  end
+  
   def gmaps4rails_address
-    "#{street}, #{city}, MA #{zipcode}" 
+    "#{site.street}, #{site.city}, MA #{site.zipcode}" 
   end
   
   

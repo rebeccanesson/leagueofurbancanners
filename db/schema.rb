@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108184104) do
+ActiveRecord::Schema.define(:version => 20130108185910) do
 
   create_table "canning_sessions", :force => true do |t|
     t.integer  "harvest_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130108184104) do
     t.integer  "season_end_day"
     t.boolean  "pruning_candidate"
     t.boolean  "pruning_permission"
+    t.boolean  "gmaps"
   end
 
   create_table "fruits", :force => true do |t|
