@@ -45,7 +45,7 @@ class FruitTree < ActiveRecord::Base
     if Rails.application.assets.find_asset "#{fruit.name.downcase}.png" 
         picpath = "/assets/#{fruit.name.downcase}.png"
     else 
-        picpath "/assets/tree.png"
+        picpath = "/assets/tree.png"
     end
     {
      "picture" => picpath,
