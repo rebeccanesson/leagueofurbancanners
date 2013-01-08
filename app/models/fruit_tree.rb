@@ -41,6 +41,20 @@ class FruitTree < ActiveRecord::Base
     "<li>#{tree_name}</li>" #put whatever you want here
   end
   
+  def gmaps4rails_marker_picture
+    if Rails.application.assets.find_asset "#{fruit.name.downcase}.png" 
+        picpath = "/assets/#{fruit.name.downcase}.png"
+    else 
+        picpath "/assets/tree.png"
+    end
+    {
+     "picture" => picpath,
+     "width" => 30,
+     "height" => 30,
+     "marker_anchor" => [ 5, 10],
+    }
+  end
+  
   def tree_name
       site.site_name + " " + fruit.name 
   end
