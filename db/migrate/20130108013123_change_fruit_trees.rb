@@ -1,11 +1,15 @@
 class ChangeFruitTrees < ActiveRecord::Migration
   def up
-      change_column :fruit_trees, :pruning_candidate, :boolean
-      change_column :fruit_trees, :pruning_permission, :boolean
+      remove_column :fruit_trees, :pruning_candidate
+      remove_column :fruit_trees, :pruning_permission
+      add_column :fruit_trees, :pruning_candidate, :boolean
+      add_column :fruit_trees, :pruning_permission, :boolean
   end
 
   def down
-      change_column :fruit_trees, :pruning_candidate, :integer
-      change_column :fruit_trees, :pruning_permission, :integer
+      remove_column :fruit_trees, :pruning_candidate
+      remove_column :fruit_trees, :pruning_permission
+      add_column :fruit_trees, :pruning_candidate, :integer
+      add_column :fruit_trees, :pruning_permission, :integer
   end
 end
