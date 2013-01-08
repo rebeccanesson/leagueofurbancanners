@@ -1,25 +1,33 @@
-<h1>Listing prunings</h1>
+<h1>Listing Prunings</h1>
 
-<table>
+<p><%= link_to 'New Pruning', new_pruning_path, :class => 'btn btn-primary' %></p>
+
+<table class="table table-striped">
   <tr>
     <th>Fruit tree</th>
     <th>Date</th>
+    <th>Leader</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @prunings.each do |pruning| %>
   <tr>
-    <td><%= pruning.fruit_tree_id %></td>
-    <td><%= pruning.date %></td>
-    <td><%= link_to 'Show', pruning %></td>
-    <td><%= link_to 'Edit', edit_pruning_path(pruning) %></td>
-    <td><%= link_to 'Destroy', pruning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= pruning.fruit_tree.tree_name if pruning.fruit_tree %></td>
+    <td><%= pruning.date.to_s :human if pruning.date %></td>
+    <td><%= pruning.leader.full_name if pruning.leader %></td>
+    <td><%= link_to 'Learn More', pruning, :class => 'btn btn-mini' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_pruning_path(pruning), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Delete', pruning, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Pruning', new_pruning_path %>
+

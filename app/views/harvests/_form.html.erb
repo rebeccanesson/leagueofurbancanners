@@ -33,7 +33,7 @@
   </div>
   <div class="control-group">
     <%= f.label :leader_id, :class => 'control-label' %>
-    <div class="controls"><%= f.collection_select :leader_id, Person.all, :id, :full_name %></div>
+    <div class="controls"><%= f.collection_select :leader_id, Person.order(:last_name, :first_name), :id, :full_name %></div>
   </div>
   <div class="control-group">
     <%= f.label :amount_harvested, :class => 'control-label' %>

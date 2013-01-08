@@ -28,6 +28,7 @@ class HarvestsController < ApplicationController
   # GET /harvests/new.json
   def new
     @harvest = Harvest.new
+    @harvest.fruit_tree_id = params[:fruit_tree_id] if params[:fruit_tree_id]
 
     respond_to do |format|
       format.html # new.html.erb

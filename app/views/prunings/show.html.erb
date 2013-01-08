@@ -1,8 +1,10 @@
+<h1>Pruning <%= @pruning.id %></h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Fruit tree:</b>
-  <%= @pruning.fruit_tree_id %>
+  <%= @pruning.fruit_tree.tree_name %>
 </p>
 
 <p>
@@ -10,6 +12,7 @@
   <%= @pruning.date %>
 </p>
 
+<p>
+  <b>Leader:</b>
+  <%= @pruning.leader.full_name if @pruning.leader %>
 
-<%= link_to 'Edit', edit_pruning_path(@pruning) %> |
-<%= link_to 'Back', prunings_path %>

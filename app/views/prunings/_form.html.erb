@@ -1,7 +1,7 @@
-<%= form_for(@pruning) do |f| %>
+<%= form_for(@pruning, :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @pruning.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@pruning.errors.count, "error") %> prohibited this pruning from being saved:</h2>
+      <h2><%= pluralize(@pruning.errors.count, "error") %> prohibited this status_check from being saved:</h2>
 
       <ul>
       <% @pruning.errors.full_messages.each do |msg| %>
@@ -11,15 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :fruit_tree_id %><br />
-    <%= f.number_field :fruit_tree_id %>
+  <div class="control-group">
+    <%= f.label :fruit_tree_id, :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select :fruit_tree_id, FruitTree.all, :id, :tree_name %></div>
   </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
+  <div class="control-group">
+    <%= f.label :date, :class => 'control-label' %>
+    <div class="controls"><%= f.datetime_select :date, :discard_minute => true, :ampm => true %></div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="control-group">
+    <%= f.label :leader_id, :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select :leader_id, Person.order(:last_name, :first_name), :id, :full_name %></div>
+  </div>
+  <div class="controls">
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

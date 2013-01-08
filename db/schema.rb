@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108013123) do
+ActiveRecord::Schema.define(:version => 20130108184104) do
 
   create_table "canning_sessions", :force => true do |t|
     t.integer  "harvest_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20130108013123) do
     t.datetime "date"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "leader_id"
   end
 
   create_table "sites", :force => true do |t|

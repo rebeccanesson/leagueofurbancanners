@@ -25,6 +25,7 @@ class PruningsController < ApplicationController
   # GET /prunings/new.json
   def new
     @pruning = Pruning.new
+    @pruning.fruit_tree_id = params[:fruit_tree_id] if params[:fruit_tree_id]
 
     respond_to do |format|
       format.html # new.html.erb

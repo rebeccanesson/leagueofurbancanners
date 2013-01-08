@@ -5,6 +5,7 @@
   <li><%= link_to 'People', people_path %></li>
   <li><%= link_to 'Harvests', harvests_path %></li>
   <li><%= link_to 'Canning Sessions', canning_sessions_path %></li>
+  <li><%= link_to 'Prunings', prunings_path %></li>
   <% if user_signed_in? %>
     <li>
     <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>        

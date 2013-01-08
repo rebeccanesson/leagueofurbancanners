@@ -40,7 +40,7 @@
   <% if @fruit_tree.pruning_permission %>Yes<% else %>No<% end %>
 </p>
 
-<p><%= link_to 'New Harvest', new_harvest_path, :class => 'btn btn-primary' %> <%= link_to 'New Status Check', new_status_check_path, :class => 'btn btn-primary'%></p>
+<p><%= link_to 'New Harvest', new_harvest_path(:fruit_tree_id => @fruit_tree.id), :class => 'btn btn-primary' %> <%= link_to 'New Status Check', new_status_check_path(:fruit_tree_id => @fruit_tree.id), :class => 'btn btn-primary'%> <%= link_to 'New Pruning', new_pruning_path(:fruit_tree_id => @fruit_tree.id), :class => 'btn btn-primary'%></p>
 
 <h2>Upcoming Harvests</h2>
 
@@ -99,6 +99,30 @@
     <% if user_signed_in? && current_user.organizer? %>
       <td><%= link_to 'Edit', edit_status_check_path(status_check), :class => 'btn btn-mini' %></td>
       <td><%= link_to 'Destroy', status_check, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<h2>Prunings</h2>
+
+<table class="table table-striped">
+  <tr>
+    <th>Date</th>
+    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @fruit_tree.prunings.each do |pruning| %>
+  <tr>
+    <td><%= harvest.date.to_s :human %></td>
+    <td><%= link_to 'Learn More', harvest, :class => 'btn btn-mini' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_harvest_path(harvest), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Delete', harvest, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
     <% end %>
   </tr>
 <% end %>

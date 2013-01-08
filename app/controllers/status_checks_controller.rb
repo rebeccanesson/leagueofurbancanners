@@ -26,6 +26,7 @@ class StatusChecksController < ApplicationController
   # GET /status_checks/new.json
   def new
     @status_check = StatusCheck.new
+    @status_check.fruit_tree_id = params[:fruit_tree_id] if params[:fruit_tree_id]
 
     respond_to do |format|
       format.html # new.html.erb
