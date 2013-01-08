@@ -27,6 +27,14 @@ class User < ActiveRecord::Base
   def organizer? 
       role == "admin" || role == "organizer"
   end
+  
+  def self.session_current_user
+    Thread.current[:current_user]
+  end
+
+  def self.session_current_user=(usr)
+    Thread.current[:current_user] = usr
+  end
      
   
 end

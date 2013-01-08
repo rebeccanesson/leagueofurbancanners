@@ -37,7 +37,11 @@ class Site < ActiveRecord::Base
   end
   
   def site_name
-    street.tr('0-9','') + " #{id}"
+    if User.session_current_user && sees_street(User.session_current_user)
+      street
+    else          
+      street.tr('0-9','') + " #{id}"
+    end
   end
   
   validates :status, :inclusion => { :in => @@STATUSES }, :presence => true
