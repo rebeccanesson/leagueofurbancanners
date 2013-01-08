@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fruit_tree_id: 1
+  date: 2013-01-07 20:26:41
+
+two:
+  fruit_tree_id: 1
+  date: 2013-01-07 20:26:41

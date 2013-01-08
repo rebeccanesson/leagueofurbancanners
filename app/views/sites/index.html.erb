@@ -16,7 +16,7 @@
 <div class="row">
   <%= form_tag sites_path, :method => 'get' do %>
     <ul>
-      <% for site_filter in ["In Season", "Needs Check", "Has Upcoming Harvest"] %>
+      <% for site_filter in Site.SITE_FILTERS %>
         <li>
           <%= check_box_tag "site_filters[]", site_filter %>
           <%= site_filter %>

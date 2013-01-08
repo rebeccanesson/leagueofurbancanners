@@ -6,6 +6,10 @@ class FruitTreesController < ApplicationController
   def index
     @fruit_trees = FruitTree.order(sort_column + ' ' + sort_direction).paginate(:per_page => 25, :page => params[:page])
 
+    @map_json = @fruit_trees.to_gmaps4rails do |fruit_tree, marker|
+        marker.infowindow render_to_string(:partial => "sites/marker_info", :locals => { :site => fruit_tree.site })
+        marker.json({ :id => fruit_tree.id, :link => fruit_tree_url(fruit_tree) })
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @fruit_trees }

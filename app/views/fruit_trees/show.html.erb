@@ -30,6 +30,16 @@
   <% end %>
 </p>
 
+<p>
+  <b>Pruning candidate:</b>
+  <% if @fruit_tree.pruning_candidate %>Yes<% else %>No<% end %>
+</p>
+
+<p>
+  <b>Pruning permission:</b>
+  <% if @fruit_tree.pruning_permission %>Yes<% else %>No<% end %>
+</p>
+
 <p><%= link_to 'New Harvest', new_harvest_path, :class => 'btn btn-primary' %> <%= link_to 'New Status Check', new_status_check_path, :class => 'btn btn-primary'%></p>
 
 <h2>Upcoming Harvests</h2>

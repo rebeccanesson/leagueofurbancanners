@@ -31,6 +31,11 @@ class Site < ActiveRecord::Base
      @@STATUSES
   end
   
+  @@SITE_FILTERS = []
+  def self.SITE_FILTERS
+      @@SITE_FILTERS
+  end
+  
   def site_name
     street.tr('0-9','') + " #{id}"
   end

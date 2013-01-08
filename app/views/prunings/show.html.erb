@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Fruit tree:</b>
+  <%= @pruning.fruit_tree_id %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @pruning.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_pruning_path(@pruning) %> |
+<%= link_to 'Back', prunings_path %>

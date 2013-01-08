@@ -1,5 +1,15 @@
 <h1>Listing Fruit Trees</h1>
 
+<div class="row">
+  <div class="span9">
+    <%= gmaps("markers" => {"data" => @map_json, "options" => {"list_container" => "markers_list" } }) %>
+  </div>
+  <div class="span3">
+    <ul id="markers_list">  </ul>
+  </div>
+</div>
+<br />
+
 <p><%= link_to 'New Fruit tree', new_fruit_tree_path, :class => 'btn btn-primary' %></p>
 
 <%= will_paginate @sites %>
@@ -8,6 +18,8 @@
   <tr>
     <th>Site</th>
     <th><%= sortable 'fruit_id', "Fruit" %></th>
+    <th><%= sortable 'pruning_candidate', "Pruning Candidate" %></th>
+    <th><%= sortable 'pruning_permission', "Pruning Permission" %></th>
     <th>Season start</th>
     <th>Season end</th>
     <th></th>
@@ -21,6 +33,8 @@
   <tr>
     <td><%= fruit_tree.site.site_name %></td>
     <td><%= fruit_tree.fruit.name %></td>
+    <td><%= fruit_tree.pruning_candidate? ? 'Yes' : 'No' %></td>
+    <td><%= fruit_tree.pruning_permission? ? 'Yes' : 'No' %></td>
     <td><%= fruit_tree.start_month %> <%= fruit_tree.start_day %></td>
     <td><%= fruit_tree.end_month %> <%= fruit_tree.end_day %></td>
     <td><%= link_to 'Learn More', fruit_tree, :class => 'btn btn-mini' %></td>

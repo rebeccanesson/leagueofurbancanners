@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116173102) do
+ActiveRecord::Schema.define(:version => 20130108013123) do
 
   create_table "canning_sessions", :force => true do |t|
     t.integer  "harvest_id"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20121116173102) do
     t.integer  "season_start_day"
     t.string   "season_end_month"
     t.integer  "season_end_day"
+    t.boolean  "pruning_candidate"
+    t.boolean  "pruning_permission"
   end
 
   create_table "fruits", :force => true do |t|
@@ -63,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20121116173102) do
 
   create_table "harvests", :force => true do |t|
     t.text     "description"
-    t.datetime "tentative_date",    :limit => 255
     t.integer  "harvesters_needed"
     t.integer  "canners_needed"
     t.datetime "date"
@@ -71,8 +72,8 @@ ActiveRecord::Schema.define(:version => 20121116173102) do
     t.integer  "leader_id"
     t.integer  "amount_harvested"
     t.text     "notes"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "people", :force => true do |t|
@@ -83,6 +84,13 @@ ActiveRecord::Schema.define(:version => 20121116173102) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "prunings", :force => true do |t|
+    t.integer  "fruit_tree_id"
+    t.datetime "date"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "sites", :force => true do |t|

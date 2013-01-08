@@ -1,0 +1,25 @@
+<%= form_for(@pruning) do |f| %>
+  <% if @pruning.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pruning.errors.count, "error") %> prohibited this pruning from being saved:</h2>
+
+      <ul>
+      <% @pruning.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fruit_tree_id %><br />
+    <%= f.number_field :fruit_tree_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.datetime_select :date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

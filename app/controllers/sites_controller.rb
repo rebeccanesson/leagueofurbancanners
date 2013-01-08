@@ -4,11 +4,12 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
+    @site_filter = params[:site_filter]
     @fruit_ids = params[:fruit_ids].collect { |i| i.to_i } if params[:fruit_ids]
     if (@fruit_ids)
         puts @fruit_ids.to_s
         @sites = Site.has_fruit_in(@fruit_ids).order(sort_column + ' ' + sort_direction).paginate(:per_page => 25, :page => params[:page])
-    else 
+    else
         @sites = Site.order(sort_column + ' ' + sort_direction).paginate(:per_page => 25, :page => params[:page])
     end
     @map_json = @sites.to_gmaps4rails do |site, marker|

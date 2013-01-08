@@ -1,4 +1,7 @@
 Lurc::Application.routes.draw do
+  resources :prunings
+
+
   resources :cannings
 
 

@@ -20,6 +20,15 @@
     <%= f.label :fruit_id, :class => 'control-label' %>
      <div class="controls"><%= f.collection_select(:fruit_id, Fruit.all, :id, :name) %></div>
   </div>
+  <div class="control_group">
+    <%= f.label :pruning_candidate, :class => 'control-label' %>
+    <div class="controls">yes: <%= f.radio_button :pruning_candidate, "true" %> no: <%= f.radio_button :pruning_candidate, "false" %></div><br />
+  </div>
+  <div class="control_group">
+    <%= f.label :pruning_permission, :class => 'control-label' %>
+    <div class="controls">yes: <%= f.radio_button :pruning_candidate, "true" %>
+                          no: <%= f.radio_button :pruning_candidate, "false" %></div><br />
+  </div>
   <div class="control-group">
     <%= f.label 'Season Start', :class => 'control-label' %>
     <div class="controls"><%= f.select(:season_start_month, MONTHS, :include_blank => true ) %>  
