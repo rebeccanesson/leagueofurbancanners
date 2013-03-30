@@ -1,6 +1,8 @@
 class Person < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :phone
   
+  default_scope order('last_name ASC, first_name ASC')
+  
   belongs_to :user, :dependent => :destroy  # deleting the person should delete the user
   
   has_many :owned_sites, :class_name => 'Site', :foreign_key => 'owner_id'
