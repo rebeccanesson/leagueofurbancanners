@@ -8,6 +8,7 @@ class FruitTree < ActiveRecord::Base
   has_many :prunings, :dependent => :destroy
   
   acts_as_gmappable :lng => :longitude, :lat => :latitude
+  acts_as_gmappable validation: false
   
   # validates :season_start_month, :inclusion => { :in => MONTHS }, :allow_nil => true
   # validates :season_end_month,  :inclusion => { :in => MONTHS }, :allow_nil => true
@@ -29,7 +30,11 @@ class FruitTree < ActiveRecord::Base
   end
   
   def gmaps4rails_address
-    "#{site.street}, #{site.city}, MA #{site.zipcode}" 
+    if site && site.street && site.city && site.zipcode
+        "#{site.street}, #{site.city}, MA #{site.zipcode}" 
+    else 
+        ""
+    end
   end
   
   
