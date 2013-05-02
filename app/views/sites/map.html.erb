@@ -1,0 +1,41 @@
+<h1>Site Map</h1>
+
+<div class="row">
+  <div class="span9">
+    <%= gmaps("markers" => {"data" => @map_json, "options" => {"list_container" => "markers_list" } }) %>
+  </div>
+  <div class="span3">
+    <ul id="markers_list">  </ul>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <%= form_tag map_sites_path, :method => 'get' do %>
+    <ul>
+      <% for site_filter in Site.SITE_FILTERS %>
+        <li>
+          <%= check_box_tag "site_filters[]", site_filter, @site_filters && @site_filters.include?(site_filter) %>
+          <%= site_filter %>
+        </li>
+      <% end %>
+    </ul>
+    <ul>
+      <% for zipcode in Site.zipcodes %>
+        <li>
+          <%= check_box_tag "zipcode_filters[]", zipcode, @zipcode_filters && @zipcode_filters.include?(zipcode), :multiple => true  %>
+          <%= zipcode %>
+        </li>
+      <% end %>
+    </ul>
+    <ul>
+      <% for fruit in Fruit.order(:name) %>
+        <li>
+          <%= check_box_tag "fruit_ids[]", fruit.id, @fruit_ids && @fruit_ids.include?(fruit.id), :multiple => true  %>
+          <%= fruit.name %>
+        </li>
+      <% end %>
+    </ul>
+    <%= submit_tag "Filter", :name => nil %>
+  <% end %>
+</div>

@@ -30,8 +30,8 @@ class FruitTree < ActiveRecord::Base
   end
   
   def gmaps4rails_address
-    if site && site.street && site.city && site.zipcode
-        "#{site.street}, #{site.city}, MA #{site.zipcode}" 
+    if site && site.street_number && site.street_name && site.city && site.zipcode
+        "#{site.street_number} #{site.street_name}, #{site.city}, MA #{site.zipcode}" 
     else 
         ""
     end

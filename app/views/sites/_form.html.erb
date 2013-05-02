@@ -12,9 +12,13 @@
   <% end %>
 
   <div class="control-group"> 
-      <%= f.label :street, :class => 'control-label' %>
-      <div class="controls"><%= f.text_field :street %></div>
+      <%= f.label :street_number, :class => 'control-label' %>
+      <div class="controls"><%= f.text_field :street_number %></div>
     </div>
+    <div class="control-group"> 
+        <%= f.label :street_name, :class => 'control-label' %>
+        <div class="controls"><%= f.text_field :street_name %></div>
+      </div>
     <div class="control-group">
       <%= f.label :city, :class => 'control-label' %>
       <div class="controls"><%= f.text_field :city %></div>
@@ -106,7 +110,11 @@
     <div class="controls"><%= f.text_area :note %></div>
   </div>
   <div class="control-group">
-    <%= f.label :status, :class => 'control-label' %>
+    <%= f.label 'Owner Contacted', :class => 'control-label' %>
+    <div class='controls'><%= f.check_box :owner_contacted %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Harvest Permission', :class => 'control-label' %>
     <div class="controls"><%= f.select :status, Site.STATUSES %></div>
   </div>
   <div class="control-group">

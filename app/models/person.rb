@@ -13,7 +13,7 @@ class Person < ActiveRecord::Base
   before_save :copy_email_from_user
   
   def full_name
-    first_name + "  " + last_name
+    first_name + " " + last_name
   end
   
   def merge_in(other_person)
