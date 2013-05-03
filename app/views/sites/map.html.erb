@@ -12,6 +12,7 @@
 
 <div class="row">
   <%= form_tag map_sites_path, :method => 'get' do %>
+  <div class="span4">
     <ul>
       <% for site_filter in Site.SITE_FILTERS %>
         <li>
@@ -20,6 +21,8 @@
         </li>
       <% end %>
     </ul>
+    </div>
+    <div class="span4">
     <ul>
       <% for zipcode in Site.zipcodes %>
         <li>
@@ -28,6 +31,8 @@
         </li>
       <% end %>
     </ul>
+    </div>
+    <div class="span4">
     <ul>
       <% for fruit in Fruit.order(:name) %>
         <li>
@@ -36,6 +41,7 @@
         </li>
       <% end %>
     </ul>
+    </div>
     <%= submit_tag "Filter", :name => nil %>
   <% end %>
 </div>
