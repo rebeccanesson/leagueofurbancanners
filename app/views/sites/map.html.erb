@@ -10,8 +10,8 @@
 </div>
 <br />
 
-<div class="row">
   <%= form_tag map_sites_path, :method => 'get' do %>
+<div class="row">
   <div class="span4">
     <ul>
       <% for site_filter in Site.SITE_FILTERS %>
@@ -42,6 +42,8 @@
       <% end %>
     </ul>
     </div>
-    <%= submit_tag "Filter", :name => nil %>
-  <% end %>
 </div>
+<div class="row span4">
+      <%= submit_tag "Filter", :name => nil, :class => 'btn btn-primary' %>
+  </div>
+  <% end %>
