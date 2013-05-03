@@ -42,7 +42,7 @@ class Site < ActiveRecord::Base
   end
   
   def self.zipcodes
-      Site.all.collect { |s| s.zipcode }.uniq.compact
+      Site.all.collect { |s| s.zipcode }.uniq.compact.sort
   end
   
   def self.filter_sites_by(sites, site_filter)
