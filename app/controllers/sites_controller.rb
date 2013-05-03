@@ -8,9 +8,9 @@ class SitesController < ApplicationController
     @fruit_ids = params[:fruit_ids].collect { |i| i.to_i } if params[:fruit_ids]
     @zipcode_filters = params[:zipcode_filters]
     if (@fruit_ids)
-        @sites = Site.has_fruit_in(@fruit_ids).order(sort_column + ' ' + sort_direction)
+        @sites = Site.has_fruit_in(@fruit_ids).joins(:lurc_contact).order(sort_column + ' ' + sort_direction)
     else
-        @sites = Site.order(sort_column + ' ' + sort_direction)
+        @sites = Site.joins(:lurc_contact).order(sort_column + ' ' + sort_direction)
     end
     
     if @site_filters
@@ -34,9 +34,9 @@ class SitesController < ApplicationController
       @fruit_ids = params[:fruit_ids].collect { |i| i.to_i } if params[:fruit_ids]
       @zipcode_filters = params[:zipcode_filters]
       if (@fruit_ids)
-          @sites = Site.has_fruit_in(@fruit_ids).order(sort_column + ' ' + sort_direction)
+          @sites = Site.has_fruit_in(@fruit_ids).joins(:lurc_contact).order(sort_column + ' ' + sort_direction)
       else
-          @sites = Site.order(sort_column + ' ' + sort_direction)
+          @sites = Site.joins(:lurc_contact).order(sort_column + ' ' + sort_direction)
       end
 
       if @site_filters
@@ -132,7 +132,13 @@ class SitesController < ApplicationController
   
   private
   def sort_column
-    Site.column_names.include?(params[:sort]) ? "sites." + params[:sort] : "sites.status"
+      if params[:sort] == 'lurc_contact_id'
+          "LOWER(people.last_name)"
+      elsif Site.column_names.include?(params[:sort]) 
+          "sites." + params[:sort] 
+      else 
+          "sites.status"
+      end
   end
   
   def sort_direction

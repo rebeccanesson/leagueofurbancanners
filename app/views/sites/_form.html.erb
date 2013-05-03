@@ -81,8 +81,8 @@
     </div>
     <div class="row">
   <div class="control-group span6">
-    <%= f.label :lurc_contact_id, :class => 'control-label' %>
-    <div class="controls"><%= f.collection_select(:lurc_contact_id, Person.order(:last_name, :first_name), :id, :full_name, {:include_blank => 'Choose or Create LUrC Contact'}, {:class => 'lurc_contact_id_class'}) %></div>
+    <%= f.label :lurc_contact_id, 'Site Coordinator', :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select(:lurc_contact_id, Person.order(:last_name, :first_name), :id, :full_name, {:include_blank => 'Choose or Create Site Coordinator'}, {:class => 'lurc_contact_id_class'}) %></div>
   </div>
       <div class="span6">
       <%= f.fields_for :lurc_contact, Person.new do |ff| %>
