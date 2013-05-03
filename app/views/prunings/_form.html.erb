@@ -13,7 +13,7 @@
 
   <div class="control-group">
     <%= f.label :fruit_tree_id, :class => 'control-label' %>
-    <div class="controls"><%= f.collection_select :fruit_tree_id, FruitTree.all, :id, :tree_name %></div>
+    <div class="controls"><%= f.collection_select :fruit_tree_id, FruitTree.by_street, :id, :tree_name %></div>
   </div>
   <div class="control-group">
     <%= f.label :date, :class => 'control-label' %>

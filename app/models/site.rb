@@ -3,8 +3,6 @@ class Site < ActiveRecord::Base
   attr_accessible :lat, :lon, :gmaps, :street_number, :street_name, :owner_contacted
   # geocoded_by :address 
   # after_validation :geocode, :if => :street_changed? || :city_changed? || :zipcode_changed?
-
-  default_scope order('street_name ASC, street_number ASC')
   
   acts_as_gmappable :lat => "lat", :lng => "lon"
   
@@ -28,6 +26,10 @@ class Site < ActiveRecord::Base
   
   accepts_nested_attributes_for :fruit_trees, :reject_if => proc { |attributes| attributes['fruit_id'].blank? }
   attr_accessible :fruit_trees_attributes
+  
+  def self.by_street
+      order('street_name ASC, street_number ASC')
+  end
   
   @@STATUSES = ['need to coordinate date/time with owner', '24 hour notice with reply required', '24 hour notice with no reply required', 'permission to harvest denied']
   def self.STATUSES 

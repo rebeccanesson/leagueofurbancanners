@@ -18,25 +18,7 @@ pre {
   font-size: 11px;
 }
 
-a {
-  color: green;
-  &:visited {
-    color: green;
-  }
-  &:hover {
-    color: blue;
-  }
-}
 
-a.btn {
-  color: #fff;
-  &:visited {
-    color: #fff;
-  }
-  &:hover {
-    color: #fff;
-  }
-}
 
 div {
   &.field, &.actions {
