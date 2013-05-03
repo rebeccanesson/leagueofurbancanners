@@ -65,7 +65,7 @@ class Site < ActiveRecord::Base
     end
   end
   
-  validates :status, :inclusion => { :in => @@STATUSES }, :presence => true
+  # validates :status, :inclusion => { :in => @@STATUSES }, :presence => true
     
   def address
     "#{street_number} #{street_name}, #{city}, MA #{zipcode}"
