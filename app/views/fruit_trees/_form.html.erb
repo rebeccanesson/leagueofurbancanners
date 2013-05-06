@@ -13,7 +13,7 @@
 
   <div class="control-group">
     <%= f.label :site_id, :class => 'control-label' %>
-    <div class="controls"><%= f.collection_select :site_id, Site.all, :id, :site_name %>
+    <div class="controls"><%= f.collection_select :site_id, Site.by_street, :id, :site_name %>
       <%= link_to 'Add a new site', new_site_path, :class => 'btn'%></div>
   </div>
   <div class="control-group">

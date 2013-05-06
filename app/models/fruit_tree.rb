@@ -10,6 +10,9 @@ class FruitTree < ActiveRecord::Base
   acts_as_gmappable :lng => :longitude, :lat => :latitude
   acts_as_gmappable validation: false
   
+  def self.by_street
+    joins(:site).order('sites.street_name asc, sites.street_number asc')
+  end
   # validates :season_start_month, :inclusion => { :in => MONTHS }, :allow_nil => true
   # validates :season_end_month,  :inclusion => { :in => MONTHS }, :allow_nil => true
   # validates :season_start_day, :inclusion => { :in => (1..31).to_a }, :allow_nil => true
@@ -30,8 +33,8 @@ class FruitTree < ActiveRecord::Base
   end
   
   def gmaps4rails_address
-    if site && site.street && site.city && site.zipcode
-        "#{site.street}, #{site.city}, MA #{site.zipcode}" 
+    if site && site.street_number && site.street_name && site.city && site.zipcode
+        "#{site.street_number} #{site.street_name}, #{site.city}, MA #{site.zipcode}" 
     else 
         ""
     end

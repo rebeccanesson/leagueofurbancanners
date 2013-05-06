@@ -1,0 +1,51 @@
+<h1>Site Map</h1>
+
+  <%= form_tag map_sites_path, :method => 'get' do %>
+<div class="row">
+  <div class="span4">
+    <ul>
+      <% for site_filter in Site.SITE_FILTERS %>
+        <li>
+          <%= check_box_tag "site_filters[]", site_filter, @site_filters && @site_filters.include?(site_filter) %>
+          <%= site_filter %>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+    <div class="span4">
+    <ul>
+      <% for zipcode in Site.zipcodes %>
+        <li>
+          <%= check_box_tag "zipcode_filters[]", zipcode, @zipcode_filters && @zipcode_filters.include?(zipcode), :multiple => true  %>
+          <%= zipcode %>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+    <div class="span4">
+    <ul>
+      <% for fruit in Fruit.order(:name) %>
+        <li>
+          <%= check_box_tag "fruit_ids[]", fruit.id, @fruit_ids && @fruit_ids.include?(fruit.id), :multiple => true  %>
+          <%= fruit.name %>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+</div>
+<div class="row span4">
+      <%= submit_tag "Filter", :name => nil, :class => 'btn btn-primary' %>
+  </div>
+  <% end %>
+  <br />
+
+<div class="row">
+  <div class="span9">
+    <%= gmaps("markers" => {"data" => @map_json, "options" => {"list_container" => "markers_list" } }) %>
+  </div>
+  <div class="span3">
+    <ul id="markers_list">  </ul>
+  </div>
+</div>
+<br />
+

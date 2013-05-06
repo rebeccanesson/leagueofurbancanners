@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108185910) do
+ActiveRecord::Schema.define(:version => 20130502193905) do
 
   create_table "canning_sessions", :force => true do |t|
     t.integer  "harvest_id"
@@ -106,11 +106,14 @@ ActiveRecord::Schema.define(:version => 20130108185910) do
     t.integer  "lurc_contact_id"
     t.text     "note"
     t.string   "status"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.float    "lat"
     t.float    "lon"
     t.boolean  "gmaps"
+    t.integer  "street_number"
+    t.string   "street_name"
+    t.boolean  "owner_contacted",    :default => false
   end
 
   create_table "status_checks", :force => true do |t|

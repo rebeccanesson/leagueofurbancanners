@@ -4,23 +4,59 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @site_filter = params[:site_filter]
+    @site_filters = params[:site_filters]
     @fruit_ids = params[:fruit_ids].collect { |i| i.to_i } if params[:fruit_ids]
+    @zipcode_filters = params[:zipcode_filters]
     if (@fruit_ids)
-        puts @fruit_ids.to_s
-        @sites = Site.has_fruit_in(@fruit_ids).order(sort_column + ' ' + sort_direction).paginate(:per_page => 25, :page => params[:page])
+        @sites = Site.has_fruit_in(@fruit_ids).joins(:lurc_contact).order(sort_column + ' ' + sort_direction)
     else
-        @sites = Site.order(sort_column + ' ' + sort_direction).paginate(:per_page => 25, :page => params[:page])
+        @sites = Site.joins(:lurc_contact).order(sort_column + ' ' + sort_direction)
     end
-    @map_json = @sites.to_gmaps4rails do |site, marker|
-        marker.infowindow render_to_string(:partial => "marker_info", :locals => { :site => site })
-        marker.json({ :id => site.id, :link => site_url(site) })
+    
+    if @site_filters
+        @site_filters.each do |site_filter|
+            @sites = Site.filter_sites_by(@sites, site_filter); 
+        end
     end
-
+    
+    if @zipcode_filters
+        @sites = Site.filter_sites_by_zipcodes(@sites, @zipcode_filters)
+    end
+        
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sites }
     end
+  end
+  
+  def map
+      @site_filters = params[:site_filters]
+      @fruit_ids = params[:fruit_ids].collect { |i| i.to_i } if params[:fruit_ids]
+      @zipcode_filters = params[:zipcode_filters]
+      if (@fruit_ids)
+          @sites = Site.has_fruit_in(@fruit_ids).joins(:lurc_contact).order(sort_column + ' ' + sort_direction)
+      else
+          @sites = Site.joins(:lurc_contact).order(sort_column + ' ' + sort_direction)
+      end
+
+      if @site_filters
+          @site_filters.each do |site_filter|
+              @sites = Site.filter_sites_by(@sites, site_filter); 
+          end
+      end
+
+      if @zipcode_filters
+          @sites = Site.filter_sites_by_zipcodes(@sites, @zipcode_filters)
+      end
+      @map_json = @sites.to_gmaps4rails do |site, marker|
+          marker.infowindow render_to_string(:partial => "marker_info", :locals => { :site => site })
+          marker.json({ :id => site.id, :link => site_url(site) })
+      end
+
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @sites }
+      end     
   end
 
   # GET /sites/1
@@ -96,7 +132,13 @@ class SitesController < ApplicationController
   
   private
   def sort_column
-    Site.column_names.include?(params[:sort]) ? "sites." + params[:sort] : "sites.status"
+      if params[:sort] == 'lurc_contact_id'
+          "LOWER(people.last_name)"
+      elsif Site.column_names.include?(params[:sort]) 
+          "sites." + params[:sort] 
+      else 
+          "sites.status"
+      end
   end
   
   def sort_direction

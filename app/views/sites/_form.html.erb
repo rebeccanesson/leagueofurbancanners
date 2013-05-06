@@ -12,9 +12,13 @@
   <% end %>
 
   <div class="control-group"> 
-      <%= f.label :street, :class => 'control-label' %>
-      <div class="controls"><%= f.text_field :street %></div>
+      <%= f.label :street_number, :class => 'control-label' %>
+      <div class="controls"><%= f.text_field :street_number %></div>
     </div>
+    <div class="control-group"> 
+        <%= f.label :street_name, :class => 'control-label' %>
+        <div class="controls"><%= f.text_field :street_name %></div>
+      </div>
     <div class="control-group">
       <%= f.label :city, :class => 'control-label' %>
       <div class="controls"><%= f.text_field :city %></div>
@@ -77,8 +81,8 @@
     </div>
     <div class="row">
   <div class="control-group span6">
-    <%= f.label :lurc_contact_id, :class => 'control-label' %>
-    <div class="controls"><%= f.collection_select(:lurc_contact_id, Person.order(:last_name, :first_name), :id, :full_name, {:include_blank => 'Choose or Create LUrC Contact'}, {:class => 'lurc_contact_id_class'}) %></div>
+    <%= f.label :lurc_contact_id, 'Site Coordinator', :class => 'control-label' %>
+    <div class="controls"><%= f.collection_select(:lurc_contact_id, Person.order(:last_name, :first_name), :id, :full_name, {:include_blank => 'Choose or Create Site Coordinator'}, {:class => 'lurc_contact_id_class'}) %></div>
   </div>
       <div class="span6">
       <%= f.fields_for :lurc_contact, Person.new do |ff| %>
@@ -106,7 +110,11 @@
     <div class="controls"><%= f.text_area :note %></div>
   </div>
   <div class="control-group">
-    <%= f.label :status, :class => 'control-label' %>
+    <%= f.label 'Owner Contacted', :class => 'control-label' %>
+    <div class='controls'><%= f.check_box :owner_contacted %></div>
+  </div>
+  <div class="control-group">
+    <%= f.label 'Harvest Permission', :class => 'control-label' %>
     <div class="controls"><%= f.select :status, Site.STATUSES %></div>
   </div>
   <div class="control-group">

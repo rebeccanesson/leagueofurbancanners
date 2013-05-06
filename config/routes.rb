@@ -23,7 +23,11 @@ Lurc::Application.routes.draw do
   resources :fruits
 
 
-  resources :sites
+  resources :sites do 
+    collection do
+        get 'map'
+    end
+  end
 
 
   resources :people do 

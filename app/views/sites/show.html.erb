@@ -7,7 +7,7 @@
 <% if user_signed_in? && @site.sees_street(current_user) %>
 <p>
   <b>Street:</b>
-  <%= @site.street %>
+  <%= @site.street_number %> <%= @site.street_name %>
 </p>
 <% end %>
 
@@ -32,7 +32,7 @@
 </p>
 
 <p>
-  <b>Lurc contact:</b>
+  <b>Site Coordinator:</b>
   <%= @site.lurc_contact_id? ? (link_to @site.lurc_contact.full_name, @site.lurc_contact) : nil %>
 </p>
 
@@ -42,7 +42,12 @@
 </p>
 
 <p>
-  <b>Status:</b>
+  <b>Owner Contacted:</b>
+  <%= @site.owner_contacted %>
+</p>
+
+<p>
+  <b>Harvest Permission:</b>
   <%= @site.status %>
 </p>
 
@@ -68,6 +73,65 @@
     <td><%= link_to 'Learn More', fruit_tree, :class => 'btn btn-mini' %></td>
     <td><%= link_to 'Edit', edit_fruit_tree_path(fruit_tree), :class => 'btn btn-mini' %></td>
     <td><%= link_to 'Delete', fruit_tree, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+
+<h2>Harvests</h2>
+
+<table class="table table-striped">
+  <tr>
+    <th>Fruit tree</th>
+    <th>Date</th>
+    <th>Leader</th>
+    <th>Description</th>
+    <th>Amount harvested</th>
+    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @site.harvests.each do |harvest| %>
+  <tr>
+    <td><%= harvest.fruit_tree.tree_name %></td>
+    <td><%= harvest.date.to_s :human %></td>
+    <td><%= harvest.leader.full_name %></td>
+    <td><%= harvest.description %></td>
+    <td><%= harvest.amount_harvested %></td>
+    <td><%= link_to 'Learn More', harvest, :class => 'btn btn-mini' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_harvest_path(harvest), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Delete', harvest, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<h2>Prunings</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Fruit tree</th>
+    <th>Date</th>
+    <th>Leader</th>
+    <th></th>
+    <% if user_signed_in? && current_user.organizer? %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @site.prunings.each do |pruning| %>
+  <tr>
+    <td><%= pruning.fruit_tree.tree_name if pruning.fruit_tree %></td>
+    <td><%= pruning.date.to_s :human if pruning.date %></td>
+    <td><%= pruning.leader.full_name if pruning.leader %></td>
+    <td><%= link_to 'Learn More', pruning, :class => 'btn btn-mini' %></td>
+    <% if user_signed_in? && current_user.organizer? %>
+      <td><%= link_to 'Edit', edit_pruning_path(pruning), :class => 'btn btn-mini' %></td>
+      <td><%= link_to 'Delete', pruning, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

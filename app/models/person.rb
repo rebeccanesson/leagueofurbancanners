@@ -13,7 +13,7 @@ class Person < ActiveRecord::Base
   before_save :copy_email_from_user
   
   def full_name
-    first_name + "  " + last_name
+    first_name + " " + last_name
   end
   
   def merge_in(other_person)
@@ -35,7 +35,7 @@ class Person < ActiveRecord::Base
     res = []
     res << "owner" if site.owner == self
     res << "secondary owner" if site.secondary_owner == self
-    res << "LUrC contact" if site.lurc_contact == self
+    res << "site coordinator" if site.lurc_contact == self
     res.join(", ")
   end
   

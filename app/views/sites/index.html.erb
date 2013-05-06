@@ -1,28 +1,32 @@
 <h1>Listing sites</h1>
 
-<div class="row">
-  <div class="span9">
-    <%= gmaps("markers" => {"data" => @map_json, "options" => {"list_container" => "markers_list" } }) %>
-  </div>
-  <div class="span3">
-    <ul id="markers_list">  </ul>
-  </div>
-</div>
-<br />
 <div class="row span12">
   <p><%= link_to 'New Site', new_site_path, :class => 'btn btn-primary' %></p>
 </div>
 
+<%= form_tag sites_path, :method => 'get' do %>
 <div class="row">
-  <%= form_tag sites_path, :method => 'get' do %>
+   <div class="span4">
     <ul>
       <% for site_filter in Site.SITE_FILTERS %>
         <li>
-          <%= check_box_tag "site_filters[]", site_filter %>
+          <%= check_box_tag "site_filters[]", site_filter, @site_filters && @site_filters.include?(site_filter) %>
           <%= site_filter %>
         </li>
       <% end %>
     </ul>
+   </div>
+   <div class="span4">
+    <ul>
+      <% for zipcode in Site.zipcodes %>
+        <li>
+          <%= check_box_tag "zipcode_filters[]", zipcode, @zipcode_filters && @zipcode_filters.include?(zipcode), :multiple => true  %>
+          <%= zipcode %>
+        </li>
+      <% end %>
+    </ul>
+    </div>
+    <div class="span4">
     <ul>
       <% for fruit in Fruit.order(:name) %>
         <li>
@@ -31,22 +35,25 @@
         </li>
       <% end %>
     </ul>
-    <%= submit_tag "Filter", :name => nil %>
-  <% end %>
+    </div>
 </div>
-
-<%= will_paginate @fruit_trees %>
+<div class="row span4">
+    <%= submit_tag "Filter", :name => nil, :class => 'btn btn-primary' %>
+</div>
+<% end %>
+<br />
 
 <div class="row">
 <table class="table table-striped">
   <tr>
-    <th><%= sortable 'street', "Street" %></th>
+    <th><%= sortable 'street_name', "Street" %></th>
     <th><%= sortable 'city', "City" %></th>
     <th><%= sortable 'zipcode', 'Zipcode' %></th>
     <th>Owner</th>
     <th>Secondary Owner</th>
-    <th>LUrC contact</th>
-    <th><%= sortable 'status', 'Status' %></th>
+    <th><%= sortable 'lurc_contact_id', 'Site Coordinator' %></th>
+    <th>Owner Contacted</th>
+    <th><%= sortable 'status', 'Harvest Permission' %></th>
     <th>Fruits</th>
     <th></th>
     <th></th>
@@ -61,6 +68,7 @@
     <td><%= site.owner_id? ? site.owner.full_name : nil %></td>
     <td><%= site.secondary_owner_id? ? site.secondary_owner.full_name : nil %></td>
     <td><%= site.lurc_contact_id? ? site.lurc_contact.full_name : nil %></td>
+    <td><%= site.owner_contacted %></td>
     <td><%= site.status %></td>
     <td><%= site.fruit_trees.collect { |t| t.fruit.name }.uniq.join(",") %></td>
     <td><%= link_to 'Learn More', site, :class => 'btn btn-mini' %></td>
@@ -70,5 +78,4 @@
 <% end %>
 </table>
 
-<%= will_paginate @fruit_trees %>
 </div>
