@@ -9,7 +9,6 @@ group :development, :test do
 end
 group :production do
   gem 'pg'
-  gem 'bson_ext'
 end
 
 gem 'bootstrap-sass'
@@ -20,7 +19,7 @@ gem 'gmaps4rails'
 gem 'will_paginate'
 gem 'thin'
 
-gem 'locomotive_cms', '~> 2.0.1', :require => 'locomotive/engine'
+gem 'comfortable_mexican_sofa', '~> 1.8.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.0'

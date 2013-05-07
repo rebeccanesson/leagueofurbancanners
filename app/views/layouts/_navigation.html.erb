@@ -1,13 +1,19 @@
 <ul class="nav">
-  <li><%= link_to 'Sites', sites_path %></li>
-  <li><%= link_to 'Site Map', map_sites_path %></li>
-  <li><%= link_to 'Fruit Trees', fruit_trees_path %></li>
-  <li><%= link_to 'Fruit', fruits_path %></li>
-  <li><%= link_to 'People', people_path %></li>
-  <li><%= link_to 'Harvests', harvests_path %></li>
-  <li><%= link_to 'Canning Sessions', canning_sessions_path %></li>
-  <li><%= link_to 'Prunings', prunings_path %></li>
+  <%- @cms_site.pages.root.children.published.each do |page| %>
+    <li><%= link_to page.label, page.full_path %></li>
+  <%- end %>
   <% if user_signed_in? %>
+    <li><%= link_to 'Sites', sites_path %></li>
+    <li><%= link_to 'Site Map', map_sites_path %></li>
+    <li><%= link_to 'Fruit Trees', fruit_trees_path %></li>
+    <li><%= link_to 'Fruit', fruits_path %></li>
+    <li><%= link_to 'People', people_path %></li>
+    <li><%= link_to 'Harvests', harvests_path %></li>
+    <li><%= link_to 'Canning Sessions', canning_sessions_path %></li>
+    <li><%= link_to 'Prunings', prunings_path %></li>
+    <li>
+    <%= link_to('My Account', edit_user_registration_path) %>
+    </li>
     <li>
     <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>        
     </li>
@@ -15,12 +21,6 @@
     <li>
     <%= link_to('Login', new_user_session_path)  %>  
     </li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to('My Account', edit_user_registration_path) %>
-    </li>
-  <% else %>
     <li>
     <%= link_to('Sign up', new_user_registration_path)  %>
     </li>

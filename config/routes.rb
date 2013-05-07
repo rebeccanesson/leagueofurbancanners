@@ -1,6 +1,7 @@
 Lurc::Application.routes.draw do
-  
-  mount Locomotive::Engine => '/locomotive', :as => 'locomotive' # you can change the value of the path, by default set to "/locomotive"
+
+  devise_for :users
+  resources :users, :only => [:edit, :update]
 
   resources :prunings
   resources :cannings
@@ -23,8 +24,6 @@ Lurc::Application.routes.draw do
     end  
   end
 
-  devise_for :users
-  resources :users, :only => [:edit, :update]
-
-  root :to => 'sites#index'
+  ComfortableMexicanSofa::Routing.admin   :path => '/cms-admin'
+  ComfortableMexicanSofa::Routing.content :path => '/', :sitemap => false
 end
