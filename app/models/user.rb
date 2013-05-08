@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :role, :person_attributes
   
-  ROLES = %w[member organizer admin]
+  ROLES = %w[member organizer admin contentmanager]
   
   def default_role
     self.role = "member" unless role
@@ -25,7 +25,11 @@ class User < ActiveRecord::Base
   end
   
   def organizer? 
-      role == "admin" || role == "organizer"
+    role == "admin" || role == "organizer"
+  end
+
+  def can_edit_content?
+    organizer? || role == "contentmanager"
   end
   
   def self.session_current_user

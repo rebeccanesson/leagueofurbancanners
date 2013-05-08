@@ -1,12 +1,20 @@
 # encoding: utf-8
 
 ComfortableMexicanSofa.configure do |config|
+
+  module CmsDeviseAuth
+    def authenticate
+      unless current_user && current_user.can_edit_content?
+        redirect_to new_user_session_path
+      end
+    end
+  end
   # Title of the admin area
   #   config.cms_title = 'ComfortableMexicanSofa CMS Engine'
   
   # Module responsible for authentication. You can replace it with your own.
   # It simply needs to have #authenticate method. See http_auth.rb for reference.
-  #   config.admin_auth = 'ComfortableMexicanSofa::HttpAuth'
+  config.admin_auth = CmsDeviseAuth
   
   # Module responsible for public authentication. Similar to the above. You also
   # will have access to @cms_site, @cms_layout, @cms_page so you can use them in
