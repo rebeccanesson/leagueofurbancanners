@@ -26,6 +26,8 @@
         <%- end %>
       <%- end %>
     <%- end %>
+  </ul>
+  <ul class="nav pull-right">
     <% if user_signed_in? %>
       <li class="dropdown">
         <a class="dropdown-toggle"
@@ -45,19 +47,19 @@
           <li><%= link_to 'Prunings', prunings_path %></li>
         </ul>
       </li>
-      <li>
-      <%= link_to('My Account', edit_user_registration_path) %>
-      </li>
-      <li>
-      <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>        
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= current_user.email %> <b class="caret"></b></a>
+        <ul class="dropdown-menu pull-right">
+          <%- if current_user.can_edit_content? %>
+            <li><%= link_to "CMS Management", "/cms-admin" %></li>
+            <li class="divider">&mdash;</li>
+          <%- end %>
+          <li><%= link_to('My Account', edit_user_registration_path) %></li>
+          <li><%= link_to('Logout', destroy_user_session_path, :method=>'delete') %></li>
+        </ul>
       </li>
     <% else %>
-      <li>
-      <%= link_to('Login', new_user_session_path)  %>  
-      </li>
-      <li>
-      <%= link_to('Sign up', new_user_registration_path)  %>
-      </li>
+      <li class="pull-right"><%= link_to('Login', new_user_session_path)  %></li>
     <% end %>
   </ul>
 </div>
