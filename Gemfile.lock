@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/joahking/comfy-blog.git
+  revision: d28d4d5f6e06e3226757f8393d37614a7954abde
+  ref: 1-8-1
+  specs:
+    comfy_blog (0.1.8)
+      jquery-rails (>= 1.0.0)
+      rails (>= 3.1.0)
+      rails_autolink (>= 1.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -125,6 +135,8 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
+    rails_autolink (1.1.0)
+      rails (> 3.1)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -152,7 +164,7 @@ GEM
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     thor (0.18.1)
-    tilt (1.4.0)
+    tilt (1.4.1)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -171,7 +183,8 @@ DEPENDENCIES
   bootstrap-sass
   cancan
   coffee-rails (~> 3.2.0)
-  comfortable_mexican_sofa (~> 1.8.0)
+  comfortable_mexican_sofa (~> 1.8.1)
+  comfy_blog!
   compass-rails (~> 1.0.0)
   devise
   gmaps4rails

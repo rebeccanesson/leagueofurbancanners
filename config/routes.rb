@@ -24,6 +24,9 @@ Lurc::Application.routes.draw do
     end  
   end
 
+  ComfyBlog::Routing.admin
+  ComfyBlog::Routing.content
+
   ComfortableMexicanSofa::Routing.admin   :path => '/cms-admin'
   ComfortableMexicanSofa::Routing.content :path => '/', :sitemap => false
 end

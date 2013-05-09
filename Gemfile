@@ -19,7 +19,8 @@ gem 'gmaps4rails'
 gem 'will_paginate'
 gem 'thin'
 
-gem 'comfortable_mexican_sofa', '~> 1.8.0'
+gem 'comfortable_mexican_sofa', '~> 1.8.1'
+gem 'comfy_blog', github: 'joahking/comfy-blog', ref: '1-8-1'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.0'
