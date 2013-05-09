@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def load_cms_site
     if (Cms::Site.count > 0)
-      Cms::Site.find_site(request.host_with_port.downcase, request.fullpath)
+      @cms_site = Cms::Site.find_site(request.host_with_port.downcase, request.fullpath)
       
       if @cms_site
         if params[:cms_path].present?
