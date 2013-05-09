@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/joahking/comfy-blog.git
-  revision: d28d4d5f6e06e3226757f8393d37614a7954abde
-  ref: 1-8-1
+  revision: 8a8734a54749bc74971389b6c7bf20b841dded82
+  branch: feature/1-8-1
   specs:
     comfy_blog (0.1.8)
       jquery-rails (>= 1.0.0)
