@@ -15,6 +15,8 @@ class Site < ActiveRecord::Base
   has_many :harvests, :through => :fruit_trees
   has_many :prunings, :through => :fruit_trees
   
+  before_save :set_coordinator
+  
   scope :has_fruit_in, lambda { |fruit_ids| joins(:fruit_trees).where("fruit_trees.fruit_id in (?)", fruit_ids) }
   
   # Bad practice to accept nested attributes for a parent, but forms are set up so that only new owners can/will be selected
@@ -88,5 +90,10 @@ class Site < ActiveRecord::Base
   def sees_street(user)
       user.admin? || user.organizer? || user.person == lurc_contact || user.person == owner || user.person == secondary_owner
   end
+  
+  private
+    def set_coordinator
+      self.lurc_contact ||= Person.where(:first_name => "Unknown", :last_name => "Unknown").first
+    end
   
 end

@@ -56,7 +56,7 @@
   <tr>
     <td><%= harvest.fruit_tree.tree_name %></td>
     <td><%= harvest.date.to_s :human %></td>
-    <td><%= harvest.leader.full_name %></td>
+    <td><%= harvest.leader ? harvest.leader.full_name : "" %></td>
     <td><%= harvest.description %></td>
     <td><%= harvest.amount_harvested %></td>
     <td><%= link_to 'Learn More', harvest, :class => 'btn btn-mini' %></td>
