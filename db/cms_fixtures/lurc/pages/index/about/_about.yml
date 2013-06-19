@@ -1,0 +1,7 @@
+---
+label: About
+layout: single-column
+parent: index
+target_page: 
+is_published: true
+position: 0
